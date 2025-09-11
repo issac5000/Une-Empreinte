@@ -1,0 +1,548 @@
+.mobile-menu {
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000; /* keep above decorative overlays */
+    width: min(88vw, 360px);
+    border-left: 1px solid var(--brand-200);
+    background: linear-gradient(180deg, #ffffff 0%, color-mix(in srgb, var(--brand-50) 85%, #fff) 100%);
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+}
+
+.mobile-menu.open {
+    transform: translateX(0);
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Modern mobile nav styling */
+.mnav { margin: 0; padding: 0; list-style: none; }
+.mnav-item {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; padding: 12px 10px; border-radius: 12px; color: #374151; /* gray-700 */
+  transition: background .2s ease, transform .2s ease;
+}
+.mnav-item:hover { background: var(--brand-50); }
+.mnav-item:active { transform: translateY(1px); }
+.mnav-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.mnav-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--brand-100), var(--brand-300));
+  display: flex; align-items: center; justify-content: center; color: var(--accent-gold-600);
+  box-shadow: 0 6px 14px color-mix(in srgb, var(--brand-400) 26%, transparent);
+}
+.mnav-text { font-weight: 600; color: #374151; }
+.mnav-chevron { color: var(--accent-gold-600); opacity: .8; }
+.mnav-divider { height: 1px; background: color-mix(in srgb, var(--brand-300) 65%, #fff); margin: 10px 0; }
+
+.mnav-cta {
+  display: block; width: 100%; text-align: center; font-weight: 700;
+  padding: 12px 14px; border-radius: 12px; color: white;
+  background: linear-gradient(135deg, var(--accent-gold-600), var(--brand-400));
+  box-shadow: 0 10px 22px color-mix(in srgb, var(--brand-500) 28%, transparent);
+}
+.mnav-cta:hover { filter: brightness(1.05); }
+.mnav-cta:active { transform: translateY(1px); }
+
+/* Keep header area pinned inside panel */
+#mobile-menu .mnav-header { position: sticky; top: 0; background: inherit; padding-bottom: .5rem; margin-bottom: .75rem; z-index: 1; }
+#mobile-menu .mnav-title { font-weight: 800; color: #1f2937; }
+
+/* Mobile submenu styling */
+.mnav-submenu {
+  margin: 6px 6px 6px 44px; /* indent under parent icon */
+  padding: 8px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, var(--brand-50), color-mix(in srgb, var(--brand-100) 85%, #fff));
+  border: 1px solid color-mix(in srgb, var(--brand-200) 65%, #fff);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+}
+.mnav-subitem {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; padding: 10px 10px; border-radius: 12px; color: #374151;
+}
+.mnav-subitem:hover { background: var(--brand-50); color: var(--accent-gold-600); }
+.mnav-subleft { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.mnav-subicon {
+  width: 28px; height: 28px; min-width: 28px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 10px;
+  color: var(--accent-gold-600);
+  background: linear-gradient(135deg, var(--brand-100), var(--brand-300));
+  box-shadow: 0 6px 14px color-mix(in srgb, var(--brand-400) 24%, transparent);
+}
+.mnav-subchev { color: var(--accent-gold-600); opacity: .75; font-size: .75rem; }
+.font-playfair {
+    font-family: 'Playfair Display', serif;
+  }
+  
+  
+/* Make buttons and cards rounder */
+/* Target Tailwind utility usage and native buttons */
+.rounded-lg {
+    border-radius: 1rem !important; /* larger than Tailwind default (0.5rem) */
+}
+
+.rounded-xl {
+    border-radius: 1.25rem !important;
+}
+
+button,
+button[type],
+a[class*="bg-"][class*="rounded"],
+.\!rounded,
+a[class*="px-"][class*="py-"][class*="rounded"],
+.custom-button {
+    border-radius: 1rem !important;
+}
+
+/* Extra roundness for feature cards */
+.feature-card {
+    border-radius: 1.5rem !important;
+}
+
+/* Product cards enhancements */
+.product-card {
+    transition: transform 200ms ease, box-shadow 200ms ease;
+    border-radius: 1.25rem !important; /* extra roundness */
+    width: 100%; /* fill grid cell to reduce gaps */
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+}
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+}
+.product-card img {
+    transition: transform 250ms ease;
+}
+.product-card:hover img {
+    transform: scale(1.03);
+}
+/* no max-width on larger screens; keep compact look via padding/typo */
+
+/* Tighter padding inside product cards to reduce height */
+.product-card > .p-6 { padding: 0.75rem !important; }
+
+/* Slightly smaller typography and controls inside cards */
+.product-card h3 { font-size: 1.05rem; }
+.product-card .text-lg { font-size: 1rem !important; }
+.product-card .add-to-cart,
+.product-card [data-scroll] {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.95rem !important;
+}
+/* Reduce spacing between inline controls */
+.product-card .gap-3 { column-gap: 0.5rem !important; row-gap: 0.5rem !important; }
+
+/* Keep product images flush and fully visible */
+.product-card .media {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* square container for square assets */
+    overflow: hidden;
+    background: transparent;
+    display: block;
+}
+.product-card .media img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    object-fit: cover; /* fill width, no side gaps */
+}
+
+/* Ribbon badge on product images */
+.product-card .ribbon {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    pointer-events: none;
+}
+.product-card .ribbon span {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--brand-500), var(--brand-300));
+    color: #fff;
+    padding: 6px 12px;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .02em;
+    border-top-right-radius: 9999px;
+    border-bottom-right-radius: 9999px;
+    box-shadow: 0 6px 16px color-mix(in srgb, var(--brand-500) 35%, transparent);
+}
+
+/* Ensure product cards never touch screen edges on small viewports */
+.safe-gutters {
+    padding-left: calc(env(safe-area-inset-left, 0px) + 12px);
+    padding-right: calc(env(safe-area-inset-right, 0px) + 12px);
+}
+@media (min-width: 640px) { /* sm */
+    .safe-gutters {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+/* Header shadow enhancement */
+.header-shadow {
+    box-shadow: 0 4px 12px -8px rgba(0,0,0,0.10), 0 1px 0 rgba(0,0,0,0.03);
+    border-bottom: 1px solid rgba(223,198,176,0.35); /* subtle warm hairline */
+}
+
+/* Ensure white background behind header logo image */
+header .logo img {
+    background-color: #FFFFFF;
+}
+
+/* Header dropdown (Personnalisation) */
+.dropdown-card {
+  position: relative;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), color-mix(in srgb, var(--brand-50) 85%, #fff));
+  border: 1px solid color-mix(in srgb, var(--brand-200) 65%, #fff);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+.dropdown-card::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 28px; /* aligns roughly under the trigger */
+  width: 12px; height: 12px;
+  background: inherit;
+  border-left: 1px solid color-mix(in srgb, var(--brand-200) 65%, #fff);
+  border-top: 1px solid color-mix(in srgb, var(--brand-200) 65%, #fff);
+  transform: rotate(45deg);
+  box-shadow: -2px -2px 6px rgba(0,0,0,0.03);
+}
+.menu-icon {
+  width: 28px; height: 28px;
+  min-width: 28px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 10px;
+  color: var(--accent-gold-600);
+  background: linear-gradient(135deg, var(--brand-100), var(--brand-300));
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--brand-400) 25%, transparent);
+}
+
+/* Center brand (logo + title) on mobile headers */
+@media (max-width: 1023px) { /* < lg */
+  header .container {
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+  }
+  /* Center the brand in the middle column */
+  header .container > .logo {
+    grid-column: 2;
+    justify-self: center;
+  }
+  /* Keep the action icons (cart/user/hamburger) on the right */
+  header .container > .flex.items-center {
+    grid-column: 3;
+    justify-self: end;
+  }
+}
+
+/* Brand color system: replace Tailwind pink-* with nude shades */
+:root {
+    /* Première palette nude (restaurée) */
+    --brand-50:  #FBF6F1;
+    --brand-100: #F7EEE6;
+    --brand-200: #F1E2D5;
+    --brand-300: #EBD6C4;
+    --brand-400: #DFC6B0;
+    --brand-500: #CEB097;
+    --brand-600: #B89A80;
+
+    /* Accent or pour le texte (mise à jour #cfbf7c) */
+    --accent-gold-500: #cfbf7c;
+    --accent-gold-600: #b9aa69; /* version légèrement plus profonde pour hover */
+}
+
+/* Backgrounds */
+.bg-pink-50  { background-color: var(--brand-50)  !important; }
+.bg-pink-100 { background-color: var(--brand-100) !important; }
+.bg-pink-200 { background-color: var(--brand-200) !important; }
+.bg-pink-300 { background-color: var(--brand-300) !important; }
+.bg-pink-400 { background-color: var(--brand-400) !important; }
+.bg-pink-500 { background-color: var(--brand-500) !important; }
+.bg-pink-600 { background-color: var(--brand-600) !important; }
+
+/* Sections with white background become soft off‑white */
+section.bg-white { background-color: #FEFEFE !important; }
+
+/* Text colors (accents or) */
+.text-pink-100 { color: var(--brand-100) !important; }
+.text-pink-500 { color: var(--accent-gold-500) !important; }
+.text-pink-600 { color: var(--accent-gold-600) !important; }
+
+/* Borders */
+.border-pink-400 { border-color: var(--brand-400) !important; }
+.border-pink-500 { border-color: var(--brand-500) !important; }
+.border-pink-300 { border-color: var(--brand-300) !important; }
+
+/* Hover utilities */
+.hover\:bg-pink-50:hover   { background-color: var(--brand-50) !important; }
+.hover\:bg-pink-100:hover  { background-color: var(--brand-100) !important; }
+.hover\:bg-pink-500:hover  { background-color: var(--brand-500) !important; }
+.hover\:bg-pink-600:hover  { background-color: var(--brand-600) !important; }
+.hover\:text-pink-500:hover{ color: var(--accent-gold-500) !important; }
+
+/* Focus utilities (approximation of Tailwind ring) */
+.focus\:border-pink-500:focus { border-color: var(--brand-500) !important; }
+.focus\:ring-pink-500:focus   { box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-500) 35%, transparent) !important; }
+
+/* Section heading size boost (exclude hero banner) */
+section:not(#accueil) h2.title-font {
+    font-size: clamp(2.1rem, 2.4vw + 1.1rem, 3.1rem) !important;
+    line-height: 1.15 !important;
+}
+section:not(#accueil) h1.title-font {
+    font-size: clamp(2.3rem, 2.6vw + 1.2rem, 3.4rem) !important;
+    line-height: 1.12 !important;
+}
+
+@media (max-width: 639px) {
+    /* Extra breathing room for single-column cards */
+    .product-card {
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+}
+
+/* Hide scrollbars for horizontal tracks (mobile carousels) */
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+
+/* -------- Testimonials premium styling (modern) -------- */
+.testimonial-quote {
+  font-style: italic;
+  font-size: clamp(1.05rem, 1vw + .9rem, 1.2rem);
+  color: #374151; /* gray-700 */
+}
+.text-balance { text-wrap: balance; }
+
+.testimonial-modern {
+  position: relative;
+  border-radius: 1.25rem; /* calmer radius */
+  background: linear-gradient(var(--tm-fill, #fff), var(--tm-fill, #fff)) padding-box,
+              linear-gradient(135deg, var(--brand-300), var(--accent-gold-500)) border-box;
+  border: 1px solid transparent;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  overflow: hidden;
+  will-change: transform, box-shadow, filter, background-position;
+  transition: transform 300ms cubic-bezier(.2,.8,.2,1), box-shadow 300ms ease, filter 300ms ease, border-color 300ms ease, background 300ms ease;
+  background-size: 100% 100%, 200% 200%;
+  background-position: 0 0, 0% 0%;
+  min-height: clamp(240px, 6vw + 220px, 300px);
+}
+.testimonial-modern::after {
+  content: "";
+  position: absolute;
+  inset: auto -25% -35% -25%;
+  height: 120px; /* softer */
+  background: radial-gradient(120px 80px at 50% 0%, color-mix(in srgb, var(--brand-200) 55%, transparent), transparent 70%);
+  filter: blur(18px);
+  pointer-events: none;
+}
+.quote-badge {
+  position: absolute;
+  top: 10px; left: 10px;
+  width: 32px; height: 32px;
+  border-radius: 9999px;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--brand-300), var(--brand-500));
+  color: rgba(255,255,255,0.92);
+  box-shadow: 0 6px 14px color-mix(in srgb, var(--brand-500) 28%, transparent);
+  font-size: 16px;
+  transition: transform 220ms ease;
+}
+.testimonial-highlight {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--brand-50) 92%, white) 0%, #fff 100%) padding-box,
+              linear-gradient(135deg, var(--accent-gold-500), var(--brand-300)) border-box;
+}
+.avatar-ring {
+  padding: 2px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--brand-300), var(--brand-500));
+  transition: box-shadow 220ms ease, transform 220ms ease;
+}
+.avatar-ring > .avatar-initial {
+  width: 2.25rem; /* w-9 */
+  height: 2.25rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-50);
+  color: var(--accent-gold-600);
+  font-weight: 700;
+}
+.rating-stars { color: #f59e0b; font-size: .875rem; /* amber-500, smaller */ }
+
+/* Hover animations for testimonial cards */
+.testimonial-modern:hover {
+  --tm-fill: var(--brand-50);
+}
+.testimonial-modern:hover .quote-badge { transform: none; }
+.testimonial-modern:hover .avatar-ring { box-shadow: none; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-modern, .testimonial-modern * { transition: none !important; }
+}
+
+/* Optional subtle tilt controlled by CSS vars (set via JS) */
+.tilt-card {
+  transform: translateY(var(--lift, 0)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transform-style: preserve-3d;
+}
+
+/* ---- Reusable card hover (applied to Engagements) ---- */
+.card-hover-elevate {
+  will-change: transform, box-shadow, filter, background-position;
+  transition: transform 220ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms ease, filter 220ms ease;
+}
+.card-hover-elevate:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.08);
+}
+.card-hover-elevate:hover .icon-bubble {
+  transform: translateY(-1px) scale(1.05) rotate(-4deg);
+  transition: transform 220ms ease;
+}
+.card-hover-elevate .icon-bubble { transition: transform 220ms ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card-hover-elevate, .card-hover-elevate * { transition: none !important; }
+}
+
+/* Dots navigation for testimonial carousel */
+.dots { display: flex; justify-content: center; gap: .5rem; }
+.dot {
+  width: 8px; height: 8px; border-radius: 9999px;
+  background: color-mix(in srgb, var(--brand-400) 55%, #fff);
+  transform: scale(1);
+  transition: transform .25s ease, background .25s ease;
+}
+.dot[aria-current="true"] { background: var(--accent-gold-500); transform: scale(1.25); }
+
+/* Brand gradients for peppier sections */
+.brand-gradient { background: linear-gradient(135deg, var(--brand-100), var(--brand-300)); }
+.brand-gradient-strong { background: linear-gradient(135deg, var(--brand-300), var(--brand-500)); }
+
+/* Soft glossy nude card: subtle light/dark play without borders */
+.card-nude-gloss {
+  background-image:
+    radial-gradient(120% 100% at 50% 0%, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0.18) 38%, rgba(255,255,255,0.0) 60%),
+    linear-gradient(180deg, var(--brand-50) 0%, color-mix(in srgb, var(--brand-100) 85%, var(--brand-200) 15%) 100%);
+  background-color: var(--brand-50);
+}
+
+/* ---------- Animations & Reveal on Scroll ---------- */
+@keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-right {
+    from { opacity: 0; transform: translateX(24px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scale-in {
+    from { opacity: 0; transform: scale(0.96); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* Page entrance */
+/* Don't persist a transform on body: fixed elements should stay viewport-fixed */
+body { animation: fade-up 380ms ease; }
+
+/* Generic reveal utility (only hide when JS armed) */
+.reveal { transition: opacity .6s ease, transform .6s ease; }
+body.reveal-on .reveal { opacity: 0; transform: translateY(16px); }
+.reveal.in-view, body:not(.reveal-on) .reveal { opacity: 1; transform: none; }
+
+/* Staggered reveal for grid containers */
+.reveal-stagger > * { transition: opacity .6s ease, transform .6s ease; }
+body.reveal-on .reveal-stagger > * { opacity: 0; transform: translateY(14px); }
+.reveal-stagger.in-view > * { opacity: 1; transform: none; }
+.reveal-stagger.in-view > * { transition-delay: calc(var(--stagger-index, 0) * 80ms); }
+
+/* Subtle cart counter pop */
+@keyframes count-bump {
+    0% { transform: translateY(0) scale(1); }
+    40% { transform: translateY(-2px) scale(1.15); }
+    100% { transform: translateY(0) scale(1); }
+}
+.cart-count.bump { animation: count-bump 320ms ease; }
+
+
+/* Customization model cards */
+input.custom-radio:checked + .model-card {
+    border-color: #ec4899; /* pink-500 */
+    box-shadow: 0 12px 24px rgba(236,72,153,0.25);
+    transform: translateY(-6px);
+}
+.model-card img { transition: transform 250ms ease; }
+.model-card:hover img { transform: scale(1.03); }
+
+/* Drag-drop hover feedback */
+#drag-drop-area:hover {
+    background: rgba(236,72,153,0.03);
+    border-color: #f472b6; /* pink-400 */
+}
+    
+/* Soft floral background scattered with low opacity (overlay) */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 20; /* above sections, below header (z-50) */
+    pointer-events: none;
+    opacity: 0.22; /* make it visible but still soft */
+    background-image:
+      url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>\
+  <g fill='%23EBD6C4' fill-opacity='0.18'>\
+    <circle cx='50' cy='20' r='16'/>\
+    <circle cx='80' cy='50' r='16'/>\
+    <circle cx='50' cy='80' r='16'/>\
+    <circle cx='20' cy='50' r='16'/>\
+    <circle cx='50' cy='50' r='12' fill-opacity='0.22'/>\
+  </g>\
+</svg>"),
+      url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'>\
+  <g fill='%23F1E2D5' fill-opacity='0.16'>\
+    <ellipse cx='60' cy='18' rx='14' ry='18'/>\
+    <ellipse cx='102' cy='60' rx='14' ry='18' transform='rotate(45 102 60)'/>\
+    <ellipse cx='60' cy='102' rx='14' ry='18'/>\
+    <ellipse cx='18' cy='60' rx='14' ry='18' transform='rotate(-45 18 60)'/>\
+    <circle cx='60' cy='60' r='10' fill-opacity='0.22'/>\
+  </g>\
+</svg>"),
+      url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>\
+  <g fill='%23DFC6B0' fill-opacity='0.14'>\
+    <path d='M50 15c8 10 14 12 25 10-2 11 0 17 10 25-10 8-12 14-10 25-11-2-17 0-25 10-8-10-14-12-25-10 2-11 0-17-10-25 10-8 12-14 10-25 11 2 17 0 25-10z'/>\
+  </g>\
+</svg>"),
+      url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 110'>\
+  <g fill='%23CEB097' fill-opacity='0.14'>\
+    <circle cx='55' cy='55' r='18'/>\
+    <circle cx='85' cy='30' r='10'/>\
+    <circle cx='25' cy='85' r='12'/>\
+  </g>\
+</svg>");
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-size: 300px 300px, 220px 220px, 340px 340px, 260px 260px;
+    background-position: left -30px 16%, right -20px 48%, left 58% bottom -12px, center 30%;
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Occasions spéciales — Une Empreinte</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <script src="js/main.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="U (1).png">
+</head>
+<body>
+  <header class="bg-white header-shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="logo min-w-0">
+        <a href="index.html#accueil" class="group flex items-center gap-2 sm:gap-3 min-w-0 transition-all duration-300">
+          <img src="U (1).png" alt="Logo Une Empreinte" class="h-10 sm:h-12 w-auto shadow-sm"/>
+          <span class="font-playfair text-lg sm:text-xl font-bold text-gray-800 group-hover:text-pink-600 transition-colors duration-300 truncate max-w-[55vw] md:max-w-[60vw] lg:max-w-none">Une <span class="text-pink-500 group-hover:text-gray-800">Empreinte</span></span>
+        </a>
+      </div>
+      <nav class="hidden lg:flex space-x-8">
+        <a href="index.html#accueil" class="text-gray-700 hover:text-pink-500 transition">Accueil</a>
+        <div class="relative group" tabindex="0">
+          <a href="personnalisation.html#personnalisation" class="inline-flex items-center gap-2 text-gray-700 hover:text-pink-500 transition" aria-haspopup="true" aria-expanded="false">
+            <span>Personnalisation</span>
+            <i class="fas fa-chevron-down text-xs opacity-70 transition-transform duration-200 group-hover:rotate-180"></i>
+          </a>
+          <div class="absolute left-0 top-full mt-2 w-[18rem] md:w-[22rem] lg:w-[24rem] pointer-events-none opacity-0 translate-y-2 scale-95 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:scale-100 group-focus-within:pointer-events-auto">
+            <div class="dropdown-card relative bg-white/90 backdrop-blur-md shadow-2xl ring-1 ring-black/5 rounded-2xl p-2 pointer-events-auto">
+              <ul class="py-1">
+                <li class="menu-couple"><a href="couple.html" class="group/item flex items-center justify-between gap-3 px-3 py-2 rounded-xl text-gray-700 hover:text-pink-600 hover:bg-pink-50 transition"><span class="flex items-center gap-3 min-w-0"><span class="menu-icon"><i class="fas fa-heart"></i></span><span class="truncate">Couple</span></span><i class="fas fa-chevron-right text-xs opacity-0 group-hover/item:opacity-100 transition-opacity"></i></a></li>
+                <li class="menu-mariage"><a href="mariage.html" class="group/item flex items-center justify-between gap-3 px-3 py-2 rounded-xl text-gray-700 hover:text-pink-600 hover:bg-pink-50 transition"><span class="flex items-center gap-3 min-w-0"><span class="menu-icon"><i class="fas fa-ring"></i></span><span class="truncate">Mariage</span></span><i class="fas fa-chevron-right text-xs opacity-0 group-hover/item:opacity-100 transition-opacity"></i></a></li>
+                <li class="menu-naissance"><a href="naissance.html" class="group/item flex items-center justify-between gap-3 px-3 py-2 rounded-xl text-gray-700 hover:text-pink-600 hover:bg-pink-50 transition"><span class="flex items-center gap-3 min-w-0"><span class="menu-icon"><i class="fas fa-baby"></i></span><span class="truncate">Naissance</span></span><i class="fas fa-chevron-right text-xs opacity-0 group-hover/item:opacity-100 transition-opacity"></i></a></li>
+                <li class="menu-famille"><a href="famille.html" class="group/item flex items-center justify-between gap-3 px-3 py-2 rounded-xl text-gray-700 hover:text-pink-600 hover:bg-pink-50 transition"><span class="flex items-center gap-3 min-w-0"><span class="menu-icon"><i class="fas fa-people-group"></i></span><span class="truncate">Famille</span></span><i class="fas fa-chevron-right text-xs opacity-0 group-hover/item:opacity-100 transition-opacity"></i></a></li>
+                <li class="menu-souvenirs-eternels"><a href="souvenirs-eternels.html" class="group/item flex items-center justify-between gap-3 px-3 py-2 rounded-xl text-gray-700 hover:text-pink-600 hover:bg-pink-50 transition"><span class="flex items-center gap-3 min-w-0"><span class="menu-icon"><i class="fas fa-infinity"></i></span><span class="truncate">Souvenirs éternels</span></span><i class="fas fa-chevron-right text-xs opacity-0 group-hover/item:opacity-100 transition-opacity"></i></a></li>
+                <li class="menu-occasions-speciales"><a href="occasions-speciales.html" class="group/item flex items-center justify-between gap-3 px-3 py-2 rounded-xl text-gray-700 hover:text-pink-600 hover:bg-pink-50 transition"><span class="flex items-center gap-3 min-w-0"><span class="menu-icon"><i class="fas fa-gift"></i></span><span class="truncate">Occasions spéciales</span></span><i class="fas fa-chevron-right text-xs opacity-0 group-hover/item:opacity-100 transition-opacity"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <a href="index.html#avis" class="text-gray-700 hover:text-pink-500 transition">Avis</a>
+        <a href="contact.html" class="text-gray-700 hover:text-pink-500 transition">Contact</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <a href="panier.html" class="text-gray-700 hover:text-pink-500 cart-icon"><i class="fas fa-shopping-cart text-xl"></i><span class="ml-1 hidden lg:inline">Panier</span><span class="cart-count">0</span></a>
+        <a href="compte.html" class="text-gray-700 hover:text-pink-500"><i class="fas fa-user text-xl"></i><span class="ml-1 hidden lg:inline">Compte</span></a>
+        <button id="mobile-menu-button" class="lg:hidden text-gray-700" aria-label="Ouvrir le menu"><i class="fas fa-bars text-xl"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div id="mobile-menu" class="mobile-menu fixed inset-y-0 right-0 bg-white shadow-lg z-50 p-4 overflow-y-auto">
+    <div class="mnav-header flex items-center justify-between mb-3">
+      <div class="flex items-center gap-2">
+        <img src="U (1).png" alt="Logo" class="w-8 h-8 rounded-md"/>
+        <span class="mnav-title title-font text-lg">Une <span class="text-pink-500">Empreinte</span></span>
+      </div>
+      <button id="close-mobile-menu" class="text-gray-500" aria-label="Fermer le menu"><i class="fas fa-times text-xl"></i></button>
+    </div>
+    <nav aria-label="Navigation mobile">
+      <ul class="mnav">
+        <li><a href="index.html#accueil" class="mnav-item"><span class="mnav-left"><span class="mnav-icon"><i class="fas fa-house"></i></span><span class="mnav-text">Accueil</span></span><i class="fas fa-chevron-right mnav-chevron"></i></a></li>
+        <li>
+          <a href="personnalisation.html#personnalisation" class="mnav-item submenu-toggle" aria-expanded="false" aria-controls="submenu-personnalisation">
+            <span class="mnav-left"><span class="mnav-icon"><i class="fas fa-wand-magic-sparkles"></i></span><span class="mnav-text">Personnalisation</span></span>
+            <i class="fas fa-chevron-right mnav-chevron transition-transform"></i>
+          </a>
+          <ul id="submenu-personnalisation" class="mnav-submenu hidden">
+            <li class="menu-couple"><a href="couple.html" class="mnav-subitem"><span class="mnav-subleft"><span class="mnav-subicon"><i class="fas fa-heart"></i></span><span class="truncate">Couple</span></span><i class="fas fa-chevron-right mnav-subchev"></i></a></li>
+            <li class="menu-mariage"><a href="mariage.html" class="mnav-subitem"><span class="mnav-subleft"><span class="mnav-subicon"><i class="fas fa-ring"></i></span><span class="truncate">Mariage</span></span><i class="fas fa-chevron-right mnav-subchev"></i></a></li>
+            <li class="menu-naissance"><a href="naissance.html" class="mnav-subitem"><span class="mnav-subleft"><span class="mnav-subicon"><i class="fas fa-baby"></i></span><span class="truncate">Naissance</span></span><i class="fas fa-chevron-right mnav-subchev"></i></a></li>
+            <li class="menu-famille"><a href="famille.html" class="mnav-subitem"><span class="mnav-subleft"><span class="mnav-subicon"><i class="fas fa-people-group"></i></span><span class="truncate">Famille</span></span><i class="fas fa-chevron-right mnav-subchev"></i></a></li>
+            <li class="menu-souvenirs-eternels"><a href="souvenirs-eternels.html" class="mnav-subitem"><span class="mnav-subleft"><span class="mnav-subicon"><i class="fas fa-infinity"></i></span><span class="truncate">Souvenirs éternels</span></span><i class="fas fa-chevron-right mnav-subchev"></i></a></li>
+            <li class="menu-occasions-speciales"><a href="occasions-speciales.html" class="mnav-subitem"><span class="mnav-subleft"><span class="mnav-subicon"><i class="fas fa-gift"></i></span><span class="truncate">Occasions spéciales</span></span><i class="fas fa-chevron-right mnav-subchev"></i></a></li>
+          </ul>
+        </li>
+        <li><a href="index.html#avis" class="mnav-item"><span class="mnav-left"><span class="mnav-icon"><i class="fas fa-star"></i></span><span class="mnav-text">Avis</span></span><i class="fas fa-chevron-right mnav-chevron"></i></a></li>
+        <li><a href="contact.html" class="mnav-item"><span class="mnav-left"><span class="mnav-icon"><i class="fas fa-envelope"></i></span><span class="mnav-text">Contact</span></span><i class="fas fa-chevron-right mnav-chevron"></i></a></li>
+      </ul>
+      <div class="mnav-divider"></div>
+      <a href="personnalisation.html#personnalisation" class="mnav-cta" aria-label="Personnaliser un cadre">Personnaliser un cadre</a>
+    </nav>
+    <div class="mt-6 text-sm text-gray-500">
+      <div class="flex items-center justify-between">
+        <a href="panier.html" class="hover:text-pink-500"><i class="fas fa-shopping-cart mr-2"></i>Panier <span class="cart-count ml-1">0</span></a>
+        <a href="compte.html" class="hover:text-pink-500"><i class="fas fa-user mr-2"></i>Compte</a>
+      </div>
+    </div>
+  </div>
+  <div id="mobile-backdrop" class="fixed inset-0 bg-black/40 hidden z-40" aria-hidden="true"></div>
+
+  <main class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-10 relative">
+        <div class="absolute inset-x-0 -top-2 mx-auto w-3/4 h-20 bg-pink-100 opacity-40 rounded-full blur-2xl -z-10"></div>
+        <h1 class="title-font text-3xl md:text-5xl font-extrabold text-gray-800">Collection <span class="text-pink-500">Occasions spéciales</span></h1>
+        <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Anniversaires, baptêmes, fêtes… un cadre pour chaque moment.</p>
+      </div>
+      <div class="text-center">
+        <a href="personnalisation.html#personnalisation" class="inline-block bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-lg transition">Personnaliser un cadre</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto px-4 text-center text-gray-300">
+      © Une Empreinte — 2025
+    </div>
+  </footer>
+</body>
+</html>
+

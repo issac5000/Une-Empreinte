@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panier — Une Empreinte</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/png" href="U (1).png">
+  <script defer src="js/main.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="bg-white header-shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="logo min-w-0">
+        <a href="index.html#accueil" class="group flex items-center gap-2 sm:gap-3 min-w-0 transition-all duration-300">
+          <img src="U (1).png" alt="Logo Une Empreinte" class="h-10 sm:h-12 w-auto shadow-sm"/>
+          <span class="font-playfair text-lg sm:text-xl font-bold text-gray-800">Une <span class="text-pink-500">Empreinte</span></span>
+        </a>
+      </div>
+      <nav class="hidden lg:flex space-x-8">
+        <a href="index.html#accueil" class="text-gray-700 hover:text-pink-500 transition">Accueil</a>
+        <a href="index.html#produits" class="text-gray-700 hover:text-pink-500 transition">Nos cadres</a>
+        <a href="index.html#personnalisation" class="text-gray-700 hover:text-pink-500 transition">Personnalisation</a>
+        <a href="index.html#avis" class="text-gray-700 hover:text-pink-500 transition">Avis</a>
+        <a href="contact.html" class="text-gray-700 hover:text-pink-500 transition">Contact</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <a href="panier.html" class="text-gray-900 font-semibold flex items-center">
+          <i class="fas fa-shopping-cart text-xl"></i>
+          <span class="ml-2">Panier</span>
+          <span class="cart-count ml-2">0</span>
+        </a>
+        <button id="mobile-menu-button" class="lg:hidden text-gray-700" aria-label="Ouvrir le menu">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu (outside header) -->
+  <div id="mobile-menu" class="mobile-menu fixed inset-y-0 right-0 bg-white shadow-lg z-50 p-4 overflow-y-auto">
+    <div class="mnav-header flex items-center justify-between mb-3">
+      <div class="flex items-center gap-2">
+        <img src="U (1).png" alt="Logo" class="w-8 h-8 rounded-md"/>
+        <span class="mnav-title title-font text-lg">Une <span class="text-pink-500">Empreinte</span></span>
+      </div>
+      <button id="close-mobile-menu" class="text-gray-500" aria-label="Fermer le menu">
+        <i class="fas fa-times text-xl"></i>
+      </button>
+    </div>
+    <nav aria-label="Navigation mobile">
+      <ul class="mnav">
+        <li><a href="index.html#accueil" class="mnav-item"><span class="mnav-left"><span class="mnav-icon"><i class="fas fa-house"></i></span><span class="mnav-text">Accueil</span></span><i class="fas fa-chevron-right mnav-chevron"></i></a></li>
+        <li><a href="index.html#produits" class="mnav-item"><span class="mnav-left"><span class="mnav-icon"><i class="fas fa-images"></i></span><span class="mnav-text">Nos cadres</span></span><i class="fas fa-chevron-right mnav-chevron"></i></a></li>
+        <li><a href="personnalisation.html#personnalisation" class="mnav-item"><span class="mnav-left"><span class="mnav-icon"><i class="fas fa-wand-magic-sparkles"></i></span><span class="mnav-text">Personnalisation</span></span><i class="fas fa-chevron-right mnav-chevron"></i></a></li>
+        <li><a href="index.html#avis" class="mnav-item"><span class="mnav-left"><span class="mnav-icon"><i class="fas fa-star"></i></span><span class="mnav-text">Avis</span></span><i class="fas fa-chevron-right mnav-chevron"></i></a></li>
+        <li><a href="contact.html" class="mnav-item"><span class="mnav-left"><span class="mnav-icon"><i class="fas fa-envelope"></i></span><span class="mnav-text">Contact</span></span><i class="fas fa-chevron-right mnav-chevron"></i></a></li>
+      </ul>
+      <div class="mnav-divider"></div>
+      <a href="personnalisation.html#personnalisation" class="mnav-cta" aria-label="Personnaliser un cadre">Personnaliser un cadre</a>
+    </nav>
+    <div class="mt-6 text-sm text-gray-500">
+      <div class="flex items-center justify-between">
+        <a href="panier.html" class="hover:text-pink-500"><i class="fas fa-shopping-cart mr-2"></i>Panier <span class="cart-count ml-1">0</span></a>
+        <a href="compte.html" class="hover:text-pink-500"><i class="fas fa-user mr-2"></i>Compte</a>
+      </div>
+    </div>
+  </div>
+  <div id="mobile-backdrop" class="fixed inset-0 bg-black/40 hidden z-40" aria-hidden="true"></div>
+
+  <main>
+    <section class="py-12 bg-white">
+      <div class="container mx-auto px-4 max-w-5xl">
+        <div class="relative text-center mb-10">
+          <div class="absolute inset-x-0 top-1/2 transform -translate-y-1/2 mx-auto w-3/4 h-20 bg-pink-100 opacity-20 rounded-full blur-2xl -z-10"></div>
+          <h1 class="text-3xl md:text-4xl font-extrabold text-gray-800 tracking-tight leading-tight title-font">
+            Votre <span class="text-pink-500">Panier</span>
+          </h1>
+          <p class="mt-3 text-gray-600">Retrouvez ici les articles ajoutés à votre panier.</p>
+        </div>
+
+        <!-- Cart content -->
+        <div id="cart-page" class="bg-white rounded-xl shadow-lg p-6">
+          <!-- Empty state -->
+          <div id="cart-empty" class="text-center py-12 hidden">
+            <i class="fas fa-shopping-basket text-5xl text-gray-300 mb-4"></i>
+            <p class="text-gray-600 mb-6">Votre panier est vide pour le moment.</p>
+            <a href="index.html#produits" class="inline-block bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300">Découvrir nos cadres</a>
+          </div>
+
+          <!-- Items list -->
+          <div id="cart-page-items" class="divide-y divide-gray-200"></div>
+
+          <!-- Summary -->
+          <div id="cart-summary" class="pt-6 mt-6 border-t border-gray-200 hidden">
+            <div class="flex justify-between items-center mb-4">
+              <span class="font-semibold text-gray-700">Total</span>
+              <span id="cart-page-total" class="font-bold text-pink-600">0,00 €</span>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <a href="index.html#produits" class="w-full sm:w-auto border-2 border-pink-500 text-pink-500 hover:bg-pink-50 font-semibold py-2 px-6 rounded-lg transition duration-300 text-center">Continuer les achats</a>
+              <button class="w-full sm:w-auto bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300">Passer la commande</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gray-800 text-white pt-12 pb-6">
+    <div class="container mx-auto px-4 text-center text-gray-400 text-sm">
+      <p>© 2023 Une Empreinte. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <!-- Minimal fallback to guarantee menu/FAQ on older mobiles -->
+  <script>
+  (function(){
+    if(!Element.prototype.matches){Element.prototype.matches=Element.prototype.msMatchesSelector||Element.prototype.webkitMatchesSelector}
+    if(!Element.prototype.closest){Element.prototype.closest=function(s){var el=this;do{if(el.matches&&el.matches(s))return el;el=el.parentElement||el.parentNode}while(el!==null&&el.nodeType===1);return null}}
+    var ready=function(fn){if(document.readyState!=='loading'){fn()}else{document.addEventListener('DOMContentLoaded',fn)}};
+    ready(function(){
+      var btn=document.getElementById('mobile-menu-button');
+      var menu=document.getElementById('mobile-menu');
+      var closeBtn=document.getElementById('close-mobile-menu');
+      var backdrop=document.getElementById('mobile-backdrop');
+      function open(){if(!menu)return;menu.classList.add('open');document.body.style.overflow='hidden';if(backdrop)backdrop.classList.remove('hidden');try{menu.style.transform='translateX(0)';menu.style.visibility='visible';menu.style.opacity='1';menu.style.pointerEvents='auto'}catch(e){}}
+      function close(){if(!menu)return;menu.classList.remove('open');document.body.style.overflow='';if(backdrop)backdrop.classList.add('hidden');try{menu.style.transform='translateX(100%)';menu.style.visibility='hidden';menu.style.opacity='0';menu.style.pointerEvents='none'}catch(e){}}
+      if(btn)btn.addEventListener('click',open);
+      if(closeBtn)closeBtn.addEventListener('click',close);
+      if(backdrop)backdrop.addEventListener('click',close);
+      document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
+      Array.prototype.forEach.call(document.querySelectorAll('#mobile-menu a'),function(a){a.addEventListener('click',close)});
+    });
+  })();
+  </script>
+</body>
+</html>

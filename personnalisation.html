@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Une Empreinte — Personnalisez votre cadre</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <script src="js/main.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header (links point back to index for other sections) -->
+  <header class="bg-white header-shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="logo min-w-0">
+        <a href="index.html#accueil" class="group flex items-center gap-2 sm:gap-3 min-w-0 transition-all duration-300">
+          <img src="U (1).png" alt="Logo Une Empreinte" class="h-10 sm:h-12 w-auto shadow-sm"/>
+          <span class="font-playfair text-lg sm:text-xl font-bold text-gray-800 group-hover:text-pink-600 transition-colors duration-300 truncate max-w-[55vw] md:max-w-[60vw] lg:max-w-none">
+            Une <span class="text-pink-500 group-hover:text-gray-800">Empreinte</span>
+          </span>
+        </a>
+      </div>
+      <nav class="hidden lg:flex space-x-8">
+        <a href="index.html#accueil" class="text-gray-700 hover:text-pink-500 transition">Accueil</a>
+        <a href="index.html#produits" class="text-gray-700 hover:text-pink-500 transition">Nos cadres</a>
+        <a href="#personnalisation" class="text-gray-700 hover:text-pink-500 transition">Personnalisation</a>
+        <a href="index.html#avis" class="text-gray-700 hover:text-pink-500 transition">Avis</a>
+        <a href="contact.html" class="text-gray-700 hover:text-pink-500 transition">Contact</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <a href="panier.html" class="text-gray-700 hover:text-pink-500 cart-icon">
+          <i class="fas fa-shopping-cart text-xl"></i>
+          <span class="ml-1 hidden lg:inline">Panier</span>
+          <span class="cart-count">0</span>
+        </a>
+        <a href="compte.html" class="text-gray-700 hover:text-pink-500">
+          <i class="fas fa-user text-xl"></i>
+          <span class="ml-1 hidden lg:inline">Compte</span>
+        </a>
+        <button id="mobile-menu-button" class="lg:hidden text-gray-700" aria-label="Ouvrir le menu">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu (outside header) -->
+  <div id="mobile-menu" class="mobile-menu fixed inset-y-0 right-0 bg-white shadow-lg z-50 p-4 overflow-y-auto">
+    <div class="mnav-header flex items-center justify-between mb-3">
+      <div class="flex items-center gap-2">
+        <img src="U (1).png" alt="Logo" class="w-8 h-8 rounded-md"/>
+        <span class="mnav-title title-font text-lg">Une <span class="text-pink-500">Empreinte</span></span>
+      </div>
+      <button id="close-mobile-menu" class="text-gray-500" aria-label="Fermer le menu">
+        <i class="fas fa-times text-xl"></i>
+      </button>
+    </div>
+    <nav aria-label="Navigation mobile">
+      <ul class="mnav">
+        <li><a href="index.html#accueil" class="mnav-item"><span class="mnav-left"><span class="mnav-icon"><i class="fas fa-house"></i></span><span class="mnav-text">Accueil</span></span><i class="fas fa-chevron-right mnav-chevron"></i></a></li>
+        <li><a href="index.html#produits" class="mnav-item"><span class="mnav-left"><span class="mnav-icon"><i class="fas fa-images"></i></span><span class="mnav-text">Nos cadres</span></span><i class="fas fa-chevron-right mnav-chevron"></i></a></li>
+        <li><a href="#personnalisation" class="mnav-item"><span class="mnav-left"><span class="mnav-icon"><i class="fas fa-wand-magic-sparkles"></i></span><span class="mnav-text">Personnalisation</span></span><i class="fas fa-chevron-right mnav-chevron"></i></a></li>
+        <li><a href="index.html#avis" class="mnav-item"><span class="mnav-left"><span class="mnav-icon"><i class="fas fa-star"></i></span><span class="mnav-text">Avis</span></span><i class="fas fa-chevron-right mnav-chevron"></i></a></li>
+        <li><a href="contact.html" class="mnav-item"><span class="mnav-left"><span class="mnav-icon"><i class="fas fa-envelope"></i></span><span class="mnav-text">Contact</span></span><i class="fas fa-chevron-right mnav-chevron"></i></a></li>
+      </ul>
+      <div class="mnav-divider"></div>
+      <a href="#personnalisation" class="mnav-cta" aria-label="Personnaliser un cadre">Personnaliser un cadre</a>
+    </nav>
+    <div class="mt-6 text-sm text-gray-500">
+      <div class="flex items-center justify-between">
+        <a href="panier.html" class="hover:text-pink-500"><i class="fas fa-shopping-cart mr-2"></i>Panier <span class="cart-count ml-1">0</span></a>
+        <a href="compte.html" class="hover:text-pink-500"><i class="fas fa-user mr-2"></i>Compte</a>
+      </div>
+    </div>
+  </div>
+  <div id="mobile-backdrop" class="fixed inset-0 bg-black/40 hidden z-40" aria-hidden="true"></div>
+
+  <!-- Customization Section (moved) -->
+  <section id="personnalisation" class="py-16 bg-pink-50">
+    <div class="container mx-auto px-4">
+      <div class="relative text-center mb-16 animate-fade-in-up">
+        <!-- Effet de tâche adaptée au fond rose -->
+        <div class="absolute inset-x-0 top-1/2 transform -translate-y-1/2 mx-auto w-3/4 h-20 bg-white opacity-20 rounded-full blur-2xl -z-10"></div>
+        <!-- Titre -->
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 tracking-tight leading-tight title-font">
+          Personalisez<span class="text-pink-500"> votre cadre</span>
+        </h2>
+        <!-- Slogan -->
+        <p class="mt-4 text-gray-600 text-base md:text-lg">
+          Créez un cadre unique en quelques étapes simples
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto bg-pink-50 rounded-xl p-8 shadow-lg">
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Preview -->
+          <div class="p-0 md:p-2 rounded-xl flex flex-col items-center justify-center">
+            <div id="frame-preview" class="w-full h-64 bg-gray-100 rounded-xl mb-4 flex items-center justify-center text-gray-400 border border-gray-200">
+              <i class="fas fa-image text-4xl"></i>
+            </div>
+            <h3 class="title-font text-xl font-semibold mb-2">Votre cadre personnalisé</h3>
+            <p class="text-gray-600 text-center">
+              Aperçu de votre création. Les modifications apparaîtront ici.
+            </p>
+            <div id="preview-details" class="mt-4 w-full text-left text-sm text-gray-700 hidden">
+              <p><strong>Modèle:</strong> <span id="preview-model">Naissance</span></p>
+              <p><strong>Prénom:</strong> <span id="preview-name"></span></p>
+              <p><strong>Date de naissance:</strong> <span id="preview-date"></span></p>
+              <p><strong>Message:</strong> <span id="preview-message"></span></p>
+            </div>
+          </div>
+
+          <!-- Customization Form -->
+          <div>
+            <form id="customization-form">
+              <div class="mb-6">
+                <h3 class="title-font text-xl font-semibold mb-4">1. Choisissez votre modèle</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 select-none">
+                  <label class="cursor-pointer">
+                    <input type="radio" name="model" value="Naissance" class="hidden custom-radio" checked>
+                    <div class="model-card border-2 border-gray-200 rounded-2xl p-3 transition shadow-sm hover:shadow-md hover:-translate-y-1 bg-white">
+                      <img src="image2.jpeg" alt="Modèle naissance" class="w-full aspect-square object-cover rounded-xl">
+                      <p class="text-center mt-3 text-sm font-medium">Naissance</p>
+                    </div>
+                  </label>
+                  <label class="cursor-pointer">
+                    <input type="radio" name="model" value="Famille" class="hidden custom-radio">
+                    <div class="model-card border-2 border-gray-200 rounded-2xl p-3 transition shadow-sm hover:shadow-md hover:-translate-y-1 bg-white">
+                      <img src="image1.jpeg" alt="Modèle famille" class="w-full aspect-square object-cover rounded-xl">
+                      <p class="text-center mt-3 text-sm font-medium">Famille</p>
+                    </div>
+                  </label>
+                  <label class="cursor-pointer">
+                    <input type="radio" name="model" value="Empreintes" class="hidden custom-radio">
+                    <div class="model-card border-2 border-gray-200 rounded-2xl p-3 transition shadow-sm hover:shadow-md hover:-translate-y-1 bg-white">
+                      <img src="image3.jpeg" alt="Modèle empreintes" class="w-full aspect-square object-cover rounded-xl">
+                      <p class="text-center mt-3 text-sm font-medium">Empreintes</p>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <div class="mb-6">
+                <h3 class="title-font text-xl font-semibold mb-4">2. Personnalisez votre cadre</h3>
+                <div class="space-y-4">
+                  <div class="relative">
+                    <input type="text" id="name" name="name" class="form-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-pink-500 focus:ring-1 focus:ring-pink-500" placeholder=" " required>
+                    <label for="name" class="floating-label">Prénom de bébé</label>
+                  </div>
+                  <div class="relative">
+                    <input type="date" id="birthdate" name="birthdate" class="form-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-pink-500 focus:ring-1 focus:ring-pink-500" placeholder=" " required>
+                    <label for="birthdate" class="floating-label">Date de naissance</label>
+                  </div>
+                  <div class="relative">
+                    <textarea id="message" name="message" class="form-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-pink-500 focus:ring-1 focus:ring-pink-500" rows="2" placeholder=" "></textarea>
+                    <label for="message" class="floating-label">Message personnalisé (optionnel)</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-6">
+                <h3 class="title-font text-xl font-semibold mb-4">3. Ajoutez vos photos</h3>
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center" id="drag-drop-area">
+                  <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-3"></i>
+                  <p class="text-gray-600 mb-2">Glissez-déposez vos photos ici</p>
+                  <p class="text-sm text-gray-500 mb-4">ou</p>
+                  <label class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg transition cursor-pointer">
+                    Parcourir les fichiers
+                    <input type="file" id="photo-upload" class="hidden" accept="image/*" multiple>
+                  </label>
+                </div>
+              </div>
+
+              <div class="flex gap-3">
+                <button class="add-to-cart-custom bg-pink-500 hover:bg-pink-600 text-white px-5 py-2 rounded-lg transition" data-price="69.90">Ajouter au panier</button>
+                <a href="index.html#produits" class="border-2 border-pink-500 text-pink-600 hover:bg-pink-50 px-5 py-2 rounded-lg transition">Voir les produits</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (short) -->
+  <footer class="bg-gray-800 text-white pt-12 pb-6">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+        <div class="sm:col-span-2 md:col-span-1 text-center md:text-left">
+          <div class="logo flex items-center justify-center md:justify-start mb-4">
+            <div class="logo-icon bg-pink-500 w-10 h-10 rounded-full flex items-center justify-center text-white mr-2">
+              <i class="fas fa-child"></i>
+            </div>
+            <span class="title-font text-xl font-bold text-white">Une Empreinte</span>
+          </div>
+          <p class="text-gray-300 mb-4 max-w-md mx-auto md:mx-0">Créateur de cadres personnalisés pour immortaliser les plus beaux moments de vie.</p>
+        </div>
+        <div class="text-center md:text-left">
+          <h3 class="text-lg font-semibold mb-4">Liens utiles</h3>
+          <ul class="space-y-2 text-gray-300">
+            <li><a href="index.html#accueil" class="hover:text-white transition">Accueil</a></li>
+            <li><a href="index.html#produits" class="hover:text-white transition">Nos cadres</a></li>
+            <li><a href="#personnalisation" class="hover:text-white transition">Personnalisation</a></li>
+            <li><a href="index.html#avis" class="hover:text-white transition">Avis clients</a></li>
+            <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+          </ul>
+        </div>
+        <div class="text-center md:text-left">
+          <h3 class="text-lg font-semibold mb-4">Informations</h3>
+          <ul class="space-y-2 text-gray-300">
+            <li><a href="#" class="hover:text-white transition">CGV</a></li>
+            <li><a href="#" class="hover:text-white transition">Mentions légales</a></li>
+            <li><a href="#" class="hover:text-white transition">Politique de confidentialité</a></li>
+            <li><a href="#" class="hover:text-white transition">FAQ</a></li>
+            <li><a href="#" class="hover:text-white transition">Blog</a></li>
+          </ul>
+        </div>
+        <div class="text-center md:text-left">
+          <h3 class="text-lg font-semibold mb-4">Contact</h3>
+          <ul class="space-y-2 text-gray-300">
+            <li class="flex items-start justify-center md:justify-start"><i class="fas fa-map-marker-alt mt-1 mr-2 shrink-0"></i><span class="max-w-xs">13 Rue de la Pepinière, 5000 Namur</span></li>
+            <li class="flex items-start justify-center md:justify-start"><i class="fas fa-envelope mt-1 mr-2 shrink-0"></i><span>contact@douceurcadree.com</span></li>
+            <li class="flex items-start justify-center md:justify-start"><i class="fas fa-phone-alt mt-1 mr-2 shrink-0"></i><span>(+32)465395308</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-6 border-t border-gray-700 text-center text-gray-400 text-sm">
+        <p>© 2023 Une Empreinte. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- Minimal fallback to guarantee menu/FAQ on older mobiles -->
+  <script>
+  (function(){
+    if(!Element.prototype.matches){Element.prototype.matches=Element.prototype.msMatchesSelector||Element.prototype.webkitMatchesSelector}
+    if(!Element.prototype.closest){Element.prototype.closest=function(s){var el=this;do{if(el.matches&&el.matches(s))return el;el=el.parentElement||el.parentNode}while(el!==null&&el.nodeType===1);return null}}
+    var ready=function(fn){if(document.readyState!=='loading'){fn()}else{document.addEventListener('DOMContentLoaded',fn)}};
+    ready(function(){
+      var btn=document.getElementById('mobile-menu-button');
+      var menu=document.getElementById('mobile-menu');
+      var closeBtn=document.getElementById('close-mobile-menu');
+      var backdrop=document.getElementById('mobile-backdrop');
+      function open(){if(!menu)return;menu.classList.add('open');document.body.style.overflow='hidden';if(backdrop)backdrop.classList.remove('hidden');try{menu.style.transform='translateX(0)';menu.style.visibility='visible';menu.style.opacity='1';menu.style.pointerEvents='auto'}catch(e){}}
+      function close(){if(!menu)return;menu.classList.remove('open');document.body.style.overflow='';if(backdrop)backdrop.classList.add('hidden');try{menu.style.transform='translateX(100%)';menu.style.visibility='hidden';menu.style.opacity='0';menu.style.pointerEvents='none'}catch(e){}}
+      if(btn)btn.addEventListener('click',open);
+      if(closeBtn)closeBtn.addEventListener('click',close);
+      if(backdrop)backdrop.addEventListener('click',close);
+      document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
+      Array.prototype.forEach.call(document.querySelectorAll('#mobile-menu a'),function(a){a.addEventListener('click',close)});
+    });
+  })();
+  </script>
+</body>
+</html>

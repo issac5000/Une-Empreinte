@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naissance — Modèle 1</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="U (1).png">
+</head>
+<body>
+  <header class="bg-white header-shadow sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="logo min-w-0">
+        <a href="index.html#accueil" class="group flex items-center gap-2 sm:gap-3 min-w-0 transition-all duration-300">
+          <img src="U (1).png" alt="Logo Une Empreinte" class="h-10 sm:h-12 w-auto shadow-sm"/>
+          <span class="font-playfair text-lg sm:text-xl font-bold text-gray-800 group-hover:text-pink-600 transition-colors duration-300 truncate max-w-[55vw] md:max-w-[60vw] lg:max-w-none">Une <span class="text-pink-500 group-hover:text-gray-800">Empreinte</span></span>
+        </a>
+      </div>
+      <nav class="hidden lg:flex space-x-8">
+        <a href="index.html#accueil" class="text-gray-700 hover:text-pink-500 transition">Accueil</a>
+        <a href="naissance.html" class="text-gray-700 hover:text-pink-500 transition">Naissance</a>
+        <a href="personnalisation.html#personnalisation" class="text-gray-700 hover:text-pink-500 transition">Personnalisation</a>
+        <a href="index.html#avis" class="text-gray-700 hover:text-pink-500 transition">Avis</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <a href="panier.html" class="text-gray-700 hover:text-pink-500 cart-icon"><i class="fas fa-shopping-cart text-xl"></i><span class="ml-1 hidden lg:inline">Panier</span><span class="cart-count">0</span></a>
+        <button id="mobile-menu-button" class="lg:hidden text-gray-700" aria-label="Ouvrir le menu"><i class="fas fa-bars text-xl"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div id="mobile-menu" class="mobile-menu fixed inset-y-0 right-0 bg-white shadow-lg z-50 p-4 overflow-y-auto">
+    <div class="mnav-header flex items-center justify-between mb-3">
+      <div class="flex items-center gap-2">
+        <img src="U (1).png" alt="Logo" class="w-8 h-8 rounded-md"/>
+        <span class="mnav-title title-font text-lg">Une <span class="text-pink-500">Empreinte</span></span>
+      </div>
+      <button id="close-mobile-menu" class="text-gray-500" aria-label="Fermer le menu"><i class="fas fa-times text-xl"></i></button>
+    </div>
+    <nav aria-label="Navigation mobile">
+      <ul class="mnav">
+        <li><a href="index.html#accueil" class="mnav-item"><span class="mnav-left"><span class="mnav-icon"><i class="fas fa-house"></i></span><span class="mnav-text">Accueil</span></span><i class="fas fa-chevron-right mnav-chevron"></i></a></li>
+        <li><a href="naissance.html" class="mnav-item"><span class="mnav-left"><span class="mnav-icon"><i class="fas fa-baby"></i></span><span class="mnav-text">Naissance</span></span><i class="fas fa-chevron-right mnav-chevron"></i></a></li>
+        <li><a href="personnalisation.html#personnalisation" class="mnav-item"><span class="mnav-left"><span class="mnav-icon"><i class="fas fa-wand-magic-sparkles"></i></span><span class="mnav-text">Personnalisation</span></span><i class="fas fa-chevron-right mnav-chevron"></i></a></li>
+      </ul>
+      <div class="mnav-divider"></div>
+      <a href="#personnaliser" class="mnav-cta" aria-label="Personnaliser ce cadre">Personnaliser ce cadre</a>
+    </nav>
+    <div id="mobile-backdrop" class="fixed inset-0 bg-black/40 hidden z-40" aria-hidden="true"></div>
+  </div>
+
+  <main class="py-10 bg-white">
+    <div class="container mx-auto px-4 grid lg:grid-cols-2 gap-8 items-start">
+      <div class="reveal">
+        <div class="rounded-2xl overflow-hidden shadow-md bg-white">
+          <img src="WhatsApp Image 2025-09-11 at 13.10.11.jpeg" alt="Naissance — Modèle 1 visuel" class="w-full h-full object-cover">
+        </div>
+      </div>
+      <div class="reveal">
+        <h1 class="title-font text-3xl md:text-4xl font-extrabold text-gray-800 mb-2">Naissance — Modèle 1</h1>
+        <p class="text-gray-600 mb-4">Personnalisez un souvenir de naissance unique.</p>
+        <div class="flex items-center gap-4 mb-6">
+          <span class="text-pink-500 font-bold text-2xl">49,90€</span>
+          <span class="text-gray-400 text-sm">TTC</span>
+        </div>
+        <a href="personnalisation.html#personnalisation" class="inline-block mb-6 text-pink-600 hover:text-pink-500 underline">Besoin d'une personnalisation avancée ?</a>
+
+        <form id="form-n1" class="bg-pink-50 rounded-xl p-5 border border-pink-100" autocomplete="on">
+          <h2 id="personnaliser" class="title-font text-xl font-semibold mb-4">Personnaliser ce modèle</h2>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="prenom" class="block text-sm text-gray-700 mb-1">Prénom du bébé</label>
+              <input id="prenom" name="prenom" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-pink-500 focus:ring-1 focus:ring-pink-500">
+            </div>
+            <div>
+              <label for="date" class="block text-sm text-gray-700 mb-1">Date de naissance</label>
+              <input id="date" name="date" type="date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-pink-500 focus:ring-1 focus:ring-pink-500">
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4 mt-4">
+            <div>
+              <label for="heure" class="block text-sm text-gray-700 mb-1">Heure (optionnel)</label>
+              <input id="heure" name="heure" type="time" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-pink-500 focus:ring-1 focus:ring-pink-500">
+            </div>
+            <div>
+              <label for="theme" class="block text-sm text-gray-700 mb-1">Couleur/Thème</label>
+              <select id="theme" name="theme" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-pink-500 focus:ring-1 focus:ring-pink-500">
+                <option value="Nude">Nude</option>
+                <option value="Rose poudré">Rose poudré</option>
+                <option value="Bleu doux">Bleu doux</option>
+                <option value="Sable">Sable</option>
+              </select>
+            </div>
+          </div>
+          <div class="mt-4">
+            <label for="msg" class="block text-sm text-gray-700 mb-1">Message (optionnel)</label>
+            <textarea id="msg" name="msg" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-pink-500 focus:ring-1 focus:ring-pink-500"></textarea>
+          </div>
+          <div class="mt-5 flex gap-3">
+            <button id="btn-add" type="button" class="bg-pink-500 hover:bg-pink-600 text-white px-5 py-2 rounded-lg transition">Ajouter au panier</button>
+            <a href="naissance.html" class="border-2 border-pink-500 text-pink-600 hover:bg-pink-50 px-5 py-2 rounded-lg transition">Retour à Naissance</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-gray-800 text-white py-8 mt-12">
+    <div class="container mx-auto px-4 text-center text-gray-300">© Une Empreinte — 2025</div>
+  </footer>
+
+  <script>
+  (function(){
+    const STORAGE_KEY='ue_cart_v1';
+    function getCart(){ try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch { return []; } }
+    function saveCart(c){ localStorage.setItem(STORAGE_KEY, JSON.stringify(c)); }
+    function updateCartCount(){ const cart=getCart(); const count=cart.reduce((s,it)=>s+(it.qty||1),0); document.querySelectorAll('.cart-count').forEach(el=>{el.textContent=String(count); el.classList.add('bump'); setTimeout(()=>el.classList.remove('bump'),350);}); }
+    function addToCart(item){ const cart=getCart(); const idx=cart.findIndex(it=>it.id===item.id && it.variant===item.variant); if(idx>=0){cart[idx].qty=(cart[idx].qty||1)+(item.qty||1);} else { item.qty=item.qty||1; cart.push(item);} saveCart(cart); updateCartCount(); }
+    function byId(id){ return document.getElementById(id); }
+    function buildVariant(){ const prenom=(byId('prenom').value||'').trim(); const dt=byId('date').value; const hr=byId('heure').value; const theme=byId('theme').value; const msg=(byId('msg').value||'').trim(); const parts=[]; if(prenom) parts.push(`Prénom: ${prenom}`); if(dt) parts.push(`Date: ${dt}`); if(hr) parts.push(`Heure: ${hr}`); if(theme) parts.push(`Thème: ${theme}`); if(msg) parts.push(`Message: ${msg}`); return parts.join(' | ');}    
+    document.addEventListener('DOMContentLoaded', updateCartCount);
+    document.getElementById('btn-add').addEventListener('click', function(){ const variant=buildVariant(); addToCart({ id:'naissance-modele-1', name:'Naissance — Modèle 1', price:49.90, variant, qty:1 }); this.textContent='Ajouté !'; setTimeout(()=>this.textContent='Ajouter au panier',1200); });
+  })();
+  </script>
+</body>
+</html>
+
