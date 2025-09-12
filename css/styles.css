@@ -195,10 +195,20 @@ a[class*="px-"][class*="py-"][class*="rounded"],
     border-bottom: 1px solid rgba(223,198,176,0.35); /* subtle warm hairline */
 }
 
-/* Ensure white background behind header logo image */
+/* Ensure transparent background for header logo image */
 header .logo img {
-    background-color: #FFFFFF;
+    background: transparent !important;
 }
+
+/* Force the brand logo PNG to render without any frame */
+img[src*="logoheider.png"] {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Also ensure the immediate logo container does not add a background */
+.logo { background: transparent !important; }
 
 /* Header dropdown (Personnalisation) */
 .dropdown-card {
