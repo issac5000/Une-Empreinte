@@ -195,6 +195,21 @@ a[class*="px-"][class*="py-"][class*="rounded"],
     border-bottom: 1px solid rgba(223,198,176,0.35); /* subtle warm hairline */
 }
 
+/* Align the hamburger toggle completely against the left edge */
+#mobile-menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -1rem; /* cancel the container padding */
+    padding-left: calc(0.5rem + env(safe-area-inset-left, 0px));
+}
+
+@media (min-width: 1024px) {
+    #mobile-menu-button {
+        display: inline-flex !important; /* override lg:hidden from Tailwind */
+    }
+}
+
 /* Ensure transparent background for header logo image */
 header .logo img {
     background: transparent !important;
