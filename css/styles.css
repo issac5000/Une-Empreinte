@@ -255,22 +255,55 @@ img[src*="logoheider.png"] {
   box-shadow: 0 8px 18px color-mix(in srgb, var(--brand-400) 25%, transparent);
 }
 
-/* Center brand (logo + title) on mobile headers */
+/* Mobile header layout: hamburger flush left, brand centered, actions right */
 @media (max-width: 1023px) { /* < lg */
   header .container {
     display: grid !important;
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
+    column-gap: clamp(0.5rem, 1.5vw, 0.75rem);
   }
-  /* Center the brand in the middle column */
-  header .container > .logo {
+
+  /* Allow the hamburger button and logo to become direct grid items */
+  header .container > .flex.items-center:first-of-type {
+    display: contents;
+  }
+
+  header .container > .flex.items-center:first-of-type > #mobile-menu-button {
+    grid-column: 1;
+    justify-self: start;
+    align-self: center;
+  }
+
+  header .container > .flex.items-center:first-of-type > .logo {
     grid-column: 2;
     justify-self: center;
+    align-self: center;
   }
-  /* Keep the action icons (cart/user/hamburger) on the right */
-  header .container > .flex.items-center {
+
+  /* Keep the cart / account cluster on the right */
+  header .container > .flex.items-center:last-of-type {
     grid-column: 3;
     justify-self: end;
+  }
+
+  @supports not (display: contents) {
+    header .container > .flex.items-center:first-of-type {
+      grid-column: 1 / span 2;
+      display: flex;
+      align-items: center;
+      gap: clamp(0.5rem, 1.5vw, 0.75rem);
+    }
+
+    header .container > .flex.items-center:first-of-type #mobile-menu-button {
+      flex: 0 0 auto;
+    }
+
+    header .container > .flex.items-center:first-of-type .logo {
+      flex: 1 1 auto;
+      display: flex;
+      justify-content: center;
+    }
   }
 }
 
