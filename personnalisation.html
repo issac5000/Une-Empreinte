@@ -15,13 +15,18 @@
   <!-- Header (links point back to index for other sections) -->
   <header class="bg-white header-shadow sticky top-0 z-50">
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-      <div class="logo min-w-0">
-        <a href="index.html#accueil" class="group flex items-center gap-2 sm:gap-3 min-w-0 transition-all duration-300">
-          <img src="U (1).png" alt="Logo Une Empreinte" class="h-10 sm:h-12 w-auto shadow-sm"/>
-          <span class="font-playfair text-lg sm:text-xl font-bold text-gray-800 group-hover:text-pink-600 transition-colors duration-300 truncate max-w-[55vw] md:max-w-[60vw] lg:max-w-none">
-            Une <span class="text-pink-500 group-hover:text-gray-800">Empreinte</span>
-          </span>
-        </a>
+      <div class="flex items-center gap-3 sm:gap-4">
+        <button id="mobile-menu-button" type="button" class="lg:hidden text-gray-700 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-300" aria-label="Ouvrir le menu">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+        <div class="logo min-w-0">
+          <a href="index.html#accueil" class="group flex items-center gap-2 sm:gap-3 min-w-0 transition-all duration-300">
+            <img src="U (1).png" alt="Logo Une Empreinte" class="h-10 sm:h-12 w-auto shadow-sm"/>
+            <span class="font-playfair text-lg sm:text-xl font-bold text-gray-800 group-hover:text-pink-600 transition-colors duration-300 truncate max-w-[55vw] md:max-w-[60vw] lg:max-w-none">
+              Une <span class="text-pink-500 group-hover:text-gray-800">Empreinte</span>
+            </span>
+          </a>
+        </div>
       </div>
       <nav class="hidden lg:flex space-x-8">
         <a href="index.html#accueil" class="text-gray-700 hover:text-pink-500 transition">Accueil</a>
@@ -32,7 +37,7 @@
       </nav>
       <div class="flex items-center space-x-4">
         <a href="panier.html" class="text-gray-700 hover:text-pink-500 cart-icon">
-          <i class="fas fa-shopping-cart text-xl"></i>
+          <i class="fas fa-bag-shopping text-xl"></i>
           <span class="ml-1 hidden lg:inline">Panier</span>
           <span class="cart-count">0</span>
         </a>
@@ -40,9 +45,6 @@
           <i class="fas fa-user text-xl"></i>
           <span class="ml-1 hidden lg:inline">Compte</span>
         </a>
-        <button id="mobile-menu-button" class="lg:hidden text-gray-700" aria-label="Ouvrir le menu">
-          <i class="fas fa-bars text-xl"></i>
-        </button>
       </div>
     </div>
   </header>
@@ -71,7 +73,7 @@
     </nav>
     <div class="mt-6 text-sm text-gray-500">
       <div class="flex items-center justify-between">
-        <a href="panier.html" class="hover:text-pink-500"><i class="fas fa-shopping-cart mr-2"></i>Panier <span class="cart-count ml-1">0</span></a>
+        <a href="panier.html" class="hover:text-pink-500"><i class="fas fa-bag-shopping mr-2"></i>Panier <span class="cart-count ml-1">0</span></a>
         <a href="compte.html" class="hover:text-pink-500"><i class="fas fa-user mr-2"></i>Compte</a>
       </div>
     </div>
