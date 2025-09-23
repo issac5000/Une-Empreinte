@@ -79,7 +79,14 @@
 .font-playfair {
     font-family: 'Playfair Display', serif;
   }
-  
+
+
+/* Hero background refinements */
+.hero-video {
+    filter: brightness(1.15) saturate(1.08) contrast(1.03);
+    transform: scale(1.01);
+}
+
   
 /* Make buttons and cards rounder */
 /* Target Tailwind utility usage and native buttons */

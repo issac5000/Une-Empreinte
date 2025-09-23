@@ -301,14 +301,15 @@
     <!-- Hero Section (full-bleed video with overlay text) -->
     <section id="accueil" class="relative h-[60vh] md:h-[70vh] lg:h-[80vh]">
         <!-- Full video background -->
-        <video class="absolute inset-0 w-full h-full object-cover"
+        <video class="absolute inset-0 w-full h-full object-cover hero-video"
                autoplay muted loop playsinline preload="metadata" poster="empreinte.jpeg">
             <source src="empreintevideo.mp4" type="video/mp4">
             Votre navigateur ne supporte pas la lecture vidéo.
         </video>
 
         <!-- Gradient overlay for readability -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-black/15 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-black/10 to-transparent"></div>
+        <div class="absolute inset-0 pointer-events-none bg-gradient-to-br from-[#f9e3c5]/45 via-[#f6d8b8]/30 to-transparent"></div>
 
         <!-- Text content overlay -->
         <div class="relative z-10 h-full">
