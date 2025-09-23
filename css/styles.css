@@ -85,10 +85,24 @@
 .hero-title {
     font-family: 'Playfair Display', serif;
     font-weight: 600;
-    font-size: clamp(2.6rem, 4.5vw + 1.2rem, 5rem);
+    font-size: clamp(2.2rem, 3.8vw + 1rem, 4.3rem);
     line-height: 1.08;
     letter-spacing: -0.01em;
     text-wrap: balance;
+}
+
+.hero-primary-btn {
+    background-color: rgba(212, 175, 55, 0.72);
+    border: 1px solid rgba(212, 175, 55, 0.85);
+    color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(4px);
+    transition: background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.hero-primary-btn:hover {
+    background-color: rgba(224, 199, 90, 0.82);
+    border-color: rgba(224, 199, 90, 0.9);
+    color: #ffffff !important;
 }
 
 /* Hero background refinements */
