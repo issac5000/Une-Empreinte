@@ -212,6 +212,19 @@ a[class*="px-"][class*="py-"][class*="rounded"],
     border-bottom: 1px solid rgba(223,198,176,0.35); /* subtle warm hairline */
 }
 
+header.header-shadow {
+    background-color: rgba(255, 255, 255, 0.92);
+    backdrop-filter: saturate(160%) blur(16px);
+    -webkit-backdrop-filter: saturate(160%) blur(16px);
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+@supports not (backdrop-filter: blur(0)) {
+    header.header-shadow {
+        background-color: #fdf8f3; /* soft fallback when blur is unavailable */
+    }
+}
+
 /* Align the hamburger toggle completely against the left edge */
 #mobile-menu-button {
     display: inline-flex;
@@ -230,6 +243,14 @@ a[class*="px-"][class*="py-"][class*="rounded"],
 /* Ensure transparent background for header logo image */
 header .logo img {
     background: transparent !important;
+    height: clamp(3.25rem, 10vw, 3.75rem) !important;
+    width: auto;
+}
+
+@media (min-width: 768px) {
+    header .logo img {
+        height: clamp(3.5rem, 6vw, 4rem) !important;
+    }
 }
 
 /* Force the brand logo PNG to render without any frame */
@@ -322,6 +343,16 @@ img[src*="logoheider.png"] {
       justify-content: center;
     }
   }
+}
+
+.cart-icon i {
+    color: var(--accent-gold-600) !important;
+    transition: color 0.25s ease;
+}
+
+.cart-icon:hover i,
+.cart-icon:focus i {
+    color: var(--accent-gold-500) !important;
 }
 
 /* Brand color system: replace Tailwind pink-* with nude shades */
