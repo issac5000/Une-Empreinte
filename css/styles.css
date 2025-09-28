@@ -575,11 +575,7 @@ section:not(#accueil) h1.title-font {
 
 /* Page entrance */
 /* Don't persist a transform on body: fixed elements should stay viewport-fixed */
-body {
-    animation: fade-up 380ms ease;
-    background-color: var(--brand-50);
-    color: #1f2937;
-}
+body { animation: fade-up 380ms ease; }
 
 /* Generic reveal utility (only hide when JS armed) */
 .reveal { transition: opacity .6s ease, transform .6s ease; }
@@ -616,76 +612,50 @@ input.custom-radio:checked + .model-card {
     border-color: #f472b6; /* pink-400 */
 }
     
-/* Global background animation layer */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -2;
-    pointer-events: none;
-    background: linear-gradient(135deg,
-        rgba(251, 246, 241, 0.96) 0%,
-        rgba(243, 228, 208, 0.94) 40%,
-        rgba(223, 198, 176, 0.9) 100%);
-    background-size: 200% 200%;
-    animation: gradient-drift 26s ease-in-out infinite;
-    transition: opacity 400ms ease;
-}
-
-/* Watermark fingerprint breathing softly */
+/* Soft floral background scattered with low opacity (overlay) */
 body::after {
     content: "";
     position: fixed;
     inset: 0;
-    z-index: -1;
+    z-index: 20; /* above sections, below header (z-50) */
     pointer-events: none;
-    background-image: url("../image/empreinte-watermark.svg");
-    background-repeat: no-repeat;
-    background-position: center 55%;
-    background-size: min(68vw, 560px);
-    opacity: 0.07;
-    transform: scale(1);
-    animation: watermark-pulse 16s ease-in-out infinite;
-    transition: opacity 400ms ease;
-}
-
-@keyframes gradient-drift {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-@keyframes watermark-pulse {
-    0% {
-        transform: scale(0.995);
-        opacity: 0.07;
-    }
-    50% {
-        transform: scale(1.035);
-        opacity: 0.045;
-    }
-    100% {
-        transform: scale(0.995);
-        opacity: 0.07;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    body {
-        animation: none !important;
-    }
-
-    body::before,
-    body::after {
-        animation: none !important;
-        transform: none !important;
-        background-position: center;
-        opacity: 0.07;
-    }
+    opacity: 0.22; /* make it visible but still soft */
+    background-image:
+      url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>\
+  <g fill='%23EBD6C4' fill-opacity='0.18'>\
+    <circle cx='50' cy='20' r='16'/>\
+    <circle cx='80' cy='50' r='16'/>\
+    <circle cx='50' cy='80' r='16'/>\
+    <circle cx='20' cy='50' r='16'/>\
+    <circle cx='50' cy='50' r='12' fill-opacity='0.22'/>\
+  </g>\
+</svg>"),
+      url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'>\
+  <g fill='%23F1E2D5' fill-opacity='0.16'>\
+    <ellipse cx='60' cy='18' rx='14' ry='18'/>\
+    <ellipse cx='102' cy='60' rx='14' ry='18' transform='rotate(45 102 60)'/>\
+    <ellipse cx='60' cy='102' rx='14' ry='18'/>\
+    <ellipse cx='18' cy='60' rx='14' ry='18' transform='rotate(-45 18 60)'/>\
+    <circle cx='60' cy='60' r='10' fill-opacity='0.22'/>\
+  </g>\
+</svg>"),
+      url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>\
+  <g fill='%23DFC6B0' fill-opacity='0.14'>\
+    <path d='M50 15c8 10 14 12 25 10-2 11 0 17 10 25-10 8-12 14-10 25-11-2-17 0-25 10-8-10-14-12-25-10 2-11 0-17-10-25 10-8 12-14 10-25 11 2 17 0 25-10z'/>\
+  </g>\
+</svg>"),
+      url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 110'>\
+  <g fill='%23CEB097' fill-opacity='0.14'>\
+    <circle cx='55' cy='55' r='18'/>\
+    <circle cx='85' cy='30' r='10'/>\
+    <circle cx='25' cy='85' r='12'/>\
+  </g>\
+</svg>");
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-size: 300px 300px, 220px 220px, 340px 340px, 260px 260px;
+    background-position: left -30px 16%, right -20px 48%, left 58% bottom -12px, center 30%;
 }
