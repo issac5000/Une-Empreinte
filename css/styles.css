@@ -105,6 +105,35 @@
     color: #ffffff !important;
 }
 
+@media (max-width: 640px) {
+  .hero-cta {
+    transition: transform 200ms ease, box-shadow 200ms ease;
+    will-change: transform, box-shadow;
+  }
+
+  .hero-cta:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .hero-cta:active {
+    transform: scale(0.98);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  }
+}
+
+@media (max-width: 640px) and (prefers-reduced-motion: reduce) {
+  .hero-cta {
+    transition: none !important;
+  }
+
+  .hero-cta:hover,
+  .hero-cta:active {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
 /* Hero background refinements */
 .hero-video {
     filter: brightness(1.15) saturate(1.08) contrast(1.03);
