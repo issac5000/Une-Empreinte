@@ -281,7 +281,7 @@ img[src*="logoheider.png"] {
 .logo { background: transparent !important; }
 
 /* Header dropdown (Personnalisation) */
-.dropdown-card {
+.dropdown-card { 
   position: relative;
   border-radius: 16px;
   background: linear-gradient(180deg, rgba(255,255,255,0.96), color-mix(in srgb, var(--brand-50) 85%, #fff));
@@ -308,6 +308,48 @@ img[src*="logoheider.png"] {
   color: var(--accent-gold-600);
   background: linear-gradient(135deg, var(--brand-100), var(--brand-300));
   box-shadow: 0 8px 18px color-mix(in srgb, var(--brand-400) 25%, transparent);
+}
+
+[data-site-header] a.nav-active,
+[data-site-header] .nav-link.nav-active {
+  color: #ec4899;
+  font-weight: 600;
+}
+
+[data-site-header] .dropdown-card a.nav-active {
+  background: rgba(236, 72, 153, 0.12);
+  color: #be185d;
+}
+
+[data-site-header] .nav-item-active .menu-icon {
+  color: #ec4899;
+  background: rgba(236, 72, 153, 0.15);
+  box-shadow: 0 8px 18px rgba(236, 72, 153, 0.15);
+}
+
+.cart-icon.nav-active,
+[data-site-header] a[data-nav="compte"].nav-active {
+  color: #ec4899;
+}
+
+#mobile-menu a.nav-active {
+  color: #ec4899;
+}
+
+#mobile-menu [data-nav-item].nav-item-active > .mnav-item,
+#mobile-menu .mnav-item.nav-active {
+  background: rgba(236, 72, 153, 0.12);
+}
+
+#mobile-menu .mnav-subitem.nav-active {
+  background: rgba(236, 72, 153, 0.12);
+  color: #ec4899;
+}
+
+#mobile-menu .mnav-subitem.nav-active .mnav-subicon {
+  background: rgba(236, 72, 153, 0.18);
+  color: #ec4899;
+  box-shadow: 0 6px 14px rgba(236, 72, 153, 0.18);
 }
 
 /* Mobile header layout: hamburger flush left, brand centered, actions right */
