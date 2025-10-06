@@ -14,12 +14,12 @@ const UE_HEADER_TEMPLATE = `
     </div>
     <nav class="hidden lg:flex space-x-8">
       <a href="index.html#accueil" data-nav="accueil" class="text-gray-700 hover:text-pink-500 transition nav-link">Accueil</a>
-      <div class="relative group" data-nav-item="personnalisation" tabindex="0">
+      <div class="relative group" data-nav-item="personnalisation" data-dropdown-personnalisation tabindex="0">
         <a href="personnalisation.html#personnalisation" data-nav="personnalisation" class="inline-flex items-center gap-2 text-gray-700 hover:text-pink-500 transition nav-link" aria-haspopup="true" aria-expanded="false">
           <span>Personnalisation</span>
           <i class="fas fa-chevron-down text-xs opacity-70 transition-transform duration-200 group-hover:rotate-180"></i>
         </a>
-        <div class="absolute left-0 top-full mt-2 w-[18rem] md:w-[22rem] lg:w-[24rem] pointer-events-none opacity-0 translate-y-2 scale-95 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:scale-100 group-focus-within:pointer-events-auto">
+        <div class="absolute left-0 top-full mt-2 w-[18rem] md:w-[22rem] lg:w-[24rem] pointer-events-none opacity-0 translate-y-2 scale-95 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:scale-100 group-focus-within:pointer-events-auto" data-dropdown-panel>
           <div class="dropdown-card relative bg-white/90 backdrop-blur-md shadow-2xl ring-1 ring-black/5 rounded-2xl p-2 pointer-events-auto">
             <ul class="py-1">
               <li class="menu-couple" data-nav-item="couple">
@@ -276,6 +276,36 @@ const ueEnsureGlobalHeader = () => {
   });
 };
 
+const ueForcePersonnalisationDropdownOpen = () => {
+  const desktopDropdown = document.querySelector("[data-dropdown-personnalisation]");
+  if (!desktopDropdown) return;
+
+  desktopDropdown.setAttribute("data-dropdown-open", "true");
+
+  const trigger = desktopDropdown.querySelector('a[data-nav="personnalisation"]');
+  if (trigger) {
+    trigger.setAttribute("aria-expanded", "true");
+  }
+};
+
+const ueOpenMobilePersonnalisationMenu = () => {
+  const mobileToggle = document.querySelector('#mobile-menu .submenu-toggle[data-nav="personnalisation"]') ||
+    document.querySelector('#mobile-menu .submenu-toggle');
+  if (!mobileToggle) return;
+
+  mobileToggle.setAttribute("aria-expanded", "true");
+  const submenuId = mobileToggle.getAttribute("aria-controls");
+  const submenu = submenuId ? document.getElementById(submenuId) : mobileToggle.nextElementSibling;
+  if (submenu) {
+    submenu.classList.remove("hidden");
+    submenu.classList.add("block");
+  }
+  const chevron = mobileToggle.querySelector(".mnav-chevron");
+  if (chevron) {
+    chevron.classList.add("rotate-90");
+  }
+};
+
 const ueApplyNavigationState = () => {
   const path = (window.location.pathname || "").split("/").filter(Boolean).pop() || "";
   const file = path.toLowerCase();
@@ -327,22 +357,8 @@ const ueApplyNavigationState = () => {
     markActive("personnalisation", { setAria });
   }
 
-  if (Array.from(keys).some((key) => UE_PERSONNALISATION_KEYS.has(key) && key !== "personnalisation")) {
-    const mobileToggle = document.querySelector("#mobile-menu .submenu-toggle");
-    if (mobileToggle) {
-      mobileToggle.setAttribute("aria-expanded", "true");
-      const submenuId = mobileToggle.getAttribute("aria-controls");
-      const submenu = submenuId ? document.getElementById(submenuId) : mobileToggle.nextElementSibling;
-      if (submenu) {
-        submenu.classList.remove("hidden");
-        submenu.classList.add("block");
-      }
-      const chevron = mobileToggle.querySelector(".mnav-chevron");
-      if (chevron) {
-        chevron.classList.add("rotate-90");
-      }
-    }
-  }
+  ueForcePersonnalisationDropdownOpen();
+  ueOpenMobilePersonnalisationMenu();
 };
 
 const uePrepareHeader = () => {
