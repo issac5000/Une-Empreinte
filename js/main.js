@@ -218,6 +218,24 @@ const UE_HEADER_TEMPLATE = `
 <div id="mobile-backdrop" class="fixed inset-0 bg-black/40 hidden z-40" aria-hidden="true" data-site-mobile-backdrop></div>
 `;
 
+const UE_HEADER_PATH = "header.html";
+let ueHeaderReadyResolve;
+let ueHeaderReadyResolved = false;
+const ueHeaderReady = new Promise((resolve) => {
+  ueHeaderReadyResolve = resolve;
+});
+
+const ueOnHeaderReady = (callback) => {
+  if (typeof callback !== "function") return;
+  ueHeaderReady.then(() => {
+    try {
+      callback();
+    } catch (error) {
+      console.error("Une Empreinte header-ready callback error", error);
+    }
+  });
+};
+
 const UE_NAVIGATION_MAP = {
   "": ["accueil"],
   "index.html": ["accueil"],
@@ -274,6 +292,46 @@ const ueEnsureGlobalHeader = () => {
   nodes.forEach((node) => {
     document.body.insertBefore(node, firstChild);
   });
+};
+
+const ueLoadExternalHeader = async () => {
+  if (!document.body || typeof fetch !== "function") return false;
+
+  try {
+    const response = await fetch(UE_HEADER_PATH, { cache: "no-store" });
+    if (!response || !response.ok) return false;
+
+    const html = (await response.text()).trim();
+    if (!html) return false;
+
+    const template = document.createElement("template");
+    template.innerHTML = html;
+    const nodes = Array.from(template.content.children);
+    if (!nodes.length) return false;
+
+    const removeSelectors = ["[data-site-header]", "#mobile-menu", "#mobile-backdrop"];
+    removeSelectors.forEach((selector) => {
+      const el = document.querySelector(selector);
+      if (el && el.parentElement) {
+        el.parentElement.removeChild(el);
+      }
+    });
+
+    const firstChild = document.body.firstChild;
+    nodes.forEach((node) => {
+      if (firstChild) {
+        document.body.insertBefore(node, firstChild);
+      } else {
+        document.body.appendChild(node);
+      }
+    });
+
+    return true;
+  } catch (error) {
+    console.warn("Une Empreinte: impossible de charger header.html", error);
+  }
+
+  return false;
 };
 
 const ueForcePersonnalisationDropdownOpen = () => {
@@ -361,20 +419,60 @@ const ueApplyNavigationState = () => {
   ueOpenMobilePersonnalisationMenu();
 };
 
-const uePrepareHeader = () => {
+const uePrepareHeader = async () => {
   ueEnsureGlobalHeader();
   ueApplyNavigationState();
+  const loaded = await ueLoadExternalHeader();
+  if (loaded) {
+    ueApplyNavigationState();
+  }
+};
+
+const ueInitHeader = () => {
+  const finalize = () => {
+    const finish = () => {
+      if (!ueHeaderReadyResolved) {
+        ueHeaderReadyResolved = true;
+        if (typeof document !== "undefined") {
+          let event;
+          if (typeof CustomEvent === "function") {
+            event = new CustomEvent("ue:header-ready");
+          } else if (document.createEvent) {
+            event = document.createEvent("Event");
+            event.initEvent("ue:header-ready", true, true);
+          }
+          if (event) {
+            document.dispatchEvent(event);
+          }
+        }
+        if (typeof ueHeaderReadyResolve === "function") {
+          ueHeaderReadyResolve();
+          ueHeaderReadyResolve = null;
+        }
+      }
+    };
+
+    if (typeof queueMicrotask === "function") {
+      queueMicrotask(finish);
+    } else {
+      setTimeout(finish, 0);
+    }
+  };
+
+  uePrepareHeader().catch((error) => {
+    console.error("Une Empreinte header initialization error", error);
+  }).finally(finalize);
 };
 
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", uePrepareHeader, { once: true });
+  document.addEventListener("DOMContentLoaded", ueInitHeader, { once: true });
 } else {
-  uePrepareHeader();
+  ueInitHeader();
 }
 
 window.addEventListener("hashchange", ueApplyNavigationState);
 
-document.addEventListener("DOMContentLoaded", () => {
+ueOnHeaderReady(() => {
   const mobileMenu = document.getElementById("mobile-menu");
   const primaryToggle = document.getElementById("mobile-menu-button");
   const extraToggles = Array.from(document.querySelectorAll("[data-mobile-menu-button]"))
@@ -717,6 +815,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateCartCount();
   renderCartPage();
+  const handleHeaderReady = () => {
+    document.removeEventListener('ue:header-ready', handleHeaderReady);
+    updateCartCount();
+  };
+  document.addEventListener('ue:header-ready', handleHeaderReady);
 });
 
 // ---- Reveal-on-scroll animations ----
