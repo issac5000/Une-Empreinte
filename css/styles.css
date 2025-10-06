@@ -300,6 +300,16 @@ img[src*="logoheider.png"] {
   transform: rotate(45deg);
   box-shadow: -2px -2px 6px rgba(0,0,0,0.03);
 }
+
+[data-dropdown-personnalisation][data-dropdown-open="true"] > [data-dropdown-panel] {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  pointer-events: auto !important;
+}
+
+[data-dropdown-personnalisation][data-dropdown-open="true"] > a .fa-chevron-down {
+  transform: rotate(180deg);
+}
 .menu-icon {
   width: 28px; height: 28px;
   min-width: 28px;
