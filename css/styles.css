@@ -795,42 +795,247 @@ section:not(#accueil) h1.title-font {
 
 /* ---------- Animations & Reveal on Scroll ---------- */
 @keyframes fade-up {
-    from { opacity: 0; transform: translateY(16px); }
+    from { opacity: 0; transform: translateY(30px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slide-right {
-    from { opacity: 0; transform: translateX(24px); }
+    from { opacity: 0; transform: translateX(40px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-left {
+    from { opacity: 0; transform: translateX(-40px); }
     to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes scale-in {
-    from { opacity: 0; transform: scale(0.96); }
-    to   { opacity: 1; transform: scale(1); }
+    from { opacity: 0; transform: scale(0.85) rotate(-2deg); }
+    to   { opacity: 1; transform: scale(1) rotate(0deg); }
 }
 
-/* Page entrance */
-/* Don't persist a transform on body: fixed elements should stay viewport-fixed */
-body { animation: fade-up 380ms ease; }
+@keyframes rotate-in {
+    from { opacity: 0; transform: rotate(-10deg) scale(0.8); }
+    to   { opacity: 1; transform: rotate(0deg) scale(1); }
+}
 
-/* Generic reveal utility (only hide when JS armed) */
-.reveal { transition: opacity .6s ease, transform .6s ease; }
-body.reveal-on .reveal { opacity: 0; transform: translateY(16px); }
-.reveal.in-view, body:not(.reveal-on) .reveal { opacity: 1; transform: none; }
+/* Page entrance avec bounce */
+body { animation: fade-up 600ms cubic-bezier(0.34, 1.56, 0.64, 1); }
 
-/* Staggered reveal for grid containers */
-.reveal-stagger > * { transition: opacity .6s ease, transform .6s ease; }
-body.reveal-on .reveal-stagger > * { opacity: 0; transform: translateY(14px); }
-.reveal-stagger.in-view > * { opacity: 1; transform: none; }
-.reveal-stagger.in-view > * { transition-delay: calc(var(--stagger-index, 0) * 80ms); }
+/* Generic reveal utility - animations plus spectaculaires */
+.reveal {
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
 
-/* Subtle cart counter pop */
+body.reveal-on .reveal {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+}
+
+.reveal.in-view,
+body:not(.reveal-on) .reveal {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Variantes d'animations pour plus de diversité */
+.reveal.slide-right {
+    transform: translateX(60px);
+}
+
+.reveal.slide-right.in-view {
+    transform: translateX(0);
+}
+
+.reveal.slide-left {
+    transform: translateX(-60px);
+}
+
+.reveal.slide-left.in-view {
+    transform: translateX(0);
+}
+
+.reveal.rotate-in {
+    transform: rotate(-15deg) scale(0.7);
+}
+
+.reveal.rotate-in.in-view {
+    transform: rotate(0deg) scale(1);
+}
+
+/* Staggered reveal avec effet cascade plus prononcé */
+.reveal-stagger > * {
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+body.reveal-on .reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+}
+
+.reveal-stagger.in-view > * {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.reveal-stagger.in-view > * {
+    transition-delay: calc(var(--stagger-index, 0) * 120ms);
+}
+
+/* Subtle cart counter pop - AMÉLIORÉ */
 @keyframes count-bump {
-    0% { transform: translateY(0) scale(1); }
-    40% { transform: translateY(-2px) scale(1.15); }
-    100% { transform: translateY(0) scale(1); }
+    0% { transform: translateY(0) scale(1) rotate(0deg); }
+    25% { transform: translateY(-8px) scale(1.3) rotate(-5deg); }
+    50% { transform: translateY(-4px) scale(1.2) rotate(5deg); }
+    75% { transform: translateY(-2px) scale(1.1) rotate(-2deg); }
+    100% { transform: translateY(0) scale(1) rotate(0deg); }
 }
-.cart-count.bump { animation: count-bump 320ms ease; }
+
+.cart-count {
+    transition: all 300ms ease;
+}
+
+.cart-count.bump {
+    animation: count-bump 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ========== MICRO-INTERACTIONS ========== */
+
+/* Liens avec underline animé */
+a:not([class*="bg-"]):not(.btn):not(.mnav-item) {
+    position: relative;
+    transition: color 200ms ease;
+}
+
+a:not([class*="bg-"]):not(.btn):not(.mnav-item)::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-gold-500), var(--terracotta));
+    transition: width 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+a:not([class*="bg-"]):not(.btn):not(.mnav-item):hover::after {
+    width: 100%;
+}
+
+/* Inputs avec animation au focus */
+input,
+textarea,
+select {
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    transform: scale(1.02);
+}
+
+/* Icônes Font Awesome avec rotation au hover */
+.fa-heart:hover,
+.fa-star:hover {
+    animation: heart-beat 0.6s ease;
+}
+
+@keyframes heart-beat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.2); }
+    50% { transform: scale(0.95); }
+    75% { transform: scale(1.1); }
+}
+
+/* Effet shimmer sur les cartes au hover */
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+.shimmer-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.shimmer-effect::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+/* Badges avec wiggle au hover */
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+    75% { transform: rotate(-3deg); }
+}
+
+.badge-nouveau:hover {
+    animation: wiggle 0.5s ease;
+}
+
+/* Effet de typing sur les titres */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--accent-gold-500); }
+}
+
+/* Scroll indicator animé */
+@keyframes scroll-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+}
+
+.scroll-indicator {
+    animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+/* Prix avec effet de highlight */
+.price-highlight {
+    position: relative;
+    display: inline-block;
+}
+
+.price-highlight::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -5%;
+    width: 110%;
+    height: 40%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(207, 191, 124, 0.3),
+        transparent
+    );
+    z-index: -1;
+    animation: pulse-highlight 2s ease-in-out infinite;
+}
+
+@keyframes pulse-highlight {
+    0%, 100% { opacity: 0.3; transform: scaleX(1); }
+    50% { opacity: 0.6; transform: scaleX(1.05); }
+}
 
 
 /* Customization model cards */
@@ -906,6 +1111,51 @@ body::after {
         center 45%,
         right 5% top 6%;
     mix-blend-mode: multiply;
+    animation: float-patterns 60s ease-in-out infinite;
+}
+
+/* Animation de flottement pour les motifs */
+@keyframes float-patterns {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(10px, -10px) rotate(1deg); }
+    50% { transform: translate(-5px, 10px) rotate(-1deg); }
+    75% { transform: translate(-10px, -5px) rotate(0.5deg); }
+}
+
+/* Particules flottantes animées */
+.floating-particles {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, var(--accent-gold-500), transparent);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: float-up 15s infinite ease-in-out;
+}
+
+@keyframes float-up {
+    0% {
+        transform: translateY(100vh) translateX(0) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.3;
+    }
+    90% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(100px) scale(1);
+        opacity: 0;
+    }
 }
 
 /* Contenu au-dessus des motifs */
@@ -956,4 +1206,123 @@ section:not(#accueil):not(:last-of-type)::after {
         transparent 100%
     );
     opacity: 0.2;
+    animation: separator-glow 3s ease-in-out infinite;
+}
+
+@keyframes separator-glow {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.4; }
+}
+
+/* ========== EFFETS DE RIPPLE SUR LES BOUTONS ========== */
+button,
+.btn,
+a[class*="bg-pink"],
+a[class*="bg-"][class*="hover:bg-"],
+.hero-cta,
+.add-to-cart,
+.add-to-cart-custom {
+    position: relative;
+    overflow: hidden;
+}
+
+button::before,
+.btn::before,
+a[class*="bg-pink"]::before,
+.hero-cta::before,
+.add-to-cart::before,
+.add-to-cart-custom::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    pointer-events: none;
+}
+
+button:active::before,
+.btn:active::before,
+a[class*="bg-pink"]:active::before,
+.hero-cta:active::before,
+.add-to-cart:active::before,
+.add-to-cart-custom:active::before {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+}
+
+/* ========== ANIMATIONS DE BREATHING ========== */
+@keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(207, 191, 124, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(207, 191, 124, 0.6);
+    }
+}
+
+/* Logo avec breathing */
+.logo img {
+    animation: breathe 4s ease-in-out infinite;
+}
+
+/* Badge "nouveau" avec pulse */
+.badge-nouveau {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Icônes avec bounce au hover */
+@keyframes bounce-icon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.menu-icon,
+.mnav-icon,
+.mnav-subicon {
+    transition: all 300ms ease;
+}
+
+a:hover .menu-icon,
+a:hover .mnav-icon,
+a:hover .mnav-subicon {
+    animation: bounce-icon 0.6s ease;
+}
+
+/* ========== EFFETS DE PARALLAXE ========== */
+.parallax {
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+}
+
+/* Titres de section avec effet de scale au scroll */
+section h1,
+section h2 {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+section.in-view h1,
+section.in-view h2 {
+    animation: title-entrance 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes title-entrance {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
