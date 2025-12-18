@@ -752,11 +752,56 @@ document.addEventListener("DOMContentLoaded", () => {
   // Hook personalization form add button
   document.querySelectorAll('.add-to-cart-custom').forEach(btn => {
     btn.addEventListener('click', (e) => {
-      // let the form submit if needed; here we only add to cart and prevent default
       e.preventDefault();
-      const price = parseFloat(btn.getAttribute('data-price') || '0');
-      const name = 'Cadre personnalisé';
-      addToCart({ id: 'custom', name, price, variant: null, qty: 1 });
+
+      // Get product details from data attributes
+      const id = btn.getAttribute('data-product-id') || 'custom';
+      const name = btn.getAttribute('data-product-name') || 'Cadre personnalisé';
+      const price = parseFloat(btn.getAttribute('data-product-price') || '0');
+
+      // Build variant from form fields
+      const form = btn.closest('form');
+      if (!form) {
+        addToCart({ id, name, price, variant: null, qty: 1 });
+        return;
+      }
+
+      const parts = [];
+
+      // Common fields for all products
+      const fields = [
+        { id: 'prenom', label: 'Prénom' },
+        { id: 'p1', label: 'Personne 1' },
+        { id: 'p2', label: 'Personne 2' },
+        { id: 'date', label: 'Date' },
+        { id: 'heure', label: 'Heure' },
+        { id: 'theme', label: 'Thème' },
+        { id: 'msg', label: 'Message' }
+      ];
+
+      fields.forEach(field => {
+        const input = form.querySelector(`#${field.id}`);
+        if (input) {
+          const value = (input.value || '').trim();
+          if (value) {
+            parts.push(`${field.label}: ${value}`);
+          }
+        }
+      });
+
+      const variant = parts.length > 0 ? parts.join(' | ') : null;
+
+      // Add to cart
+      addToCart({ id, name, price, variant, qty: 1 });
+
+      // Update button text
+      const originalText = btn.textContent;
+      btn.textContent = 'Ajouté !';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }, 1200);
     });
   });
 
