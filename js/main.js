@@ -752,11 +752,56 @@ document.addEventListener("DOMContentLoaded", () => {
   // Hook personalization form add button
   document.querySelectorAll('.add-to-cart-custom').forEach(btn => {
     btn.addEventListener('click', (e) => {
-      // let the form submit if needed; here we only add to cart and prevent default
       e.preventDefault();
-      const price = parseFloat(btn.getAttribute('data-price') || '0');
-      const name = 'Cadre personnalisé';
-      addToCart({ id: 'custom', name, price, variant: null, qty: 1 });
+
+      // Get product details from data attributes
+      const id = btn.getAttribute('data-product-id') || 'custom';
+      const name = btn.getAttribute('data-product-name') || 'Cadre personnalisé';
+      const price = parseFloat(btn.getAttribute('data-product-price') || '0');
+
+      // Build variant from form fields
+      const form = btn.closest('form');
+      if (!form) {
+        addToCart({ id, name, price, variant: null, qty: 1 });
+        return;
+      }
+
+      const parts = [];
+
+      // Common fields for all products
+      const fields = [
+        { id: 'prenom', label: 'Prénom' },
+        { id: 'p1', label: 'Personne 1' },
+        { id: 'p2', label: 'Personne 2' },
+        { id: 'date', label: 'Date' },
+        { id: 'heure', label: 'Heure' },
+        { id: 'theme', label: 'Thème' },
+        { id: 'msg', label: 'Message' }
+      ];
+
+      fields.forEach(field => {
+        const input = form.querySelector(`#${field.id}`);
+        if (input) {
+          const value = (input.value || '').trim();
+          if (value) {
+            parts.push(`${field.label}: ${value}`);
+          }
+        }
+      });
+
+      const variant = parts.length > 0 ? parts.join(' | ') : null;
+
+      // Add to cart
+      addToCart({ id, name, price, variant, qty: 1 });
+
+      // Update button text
+      const originalText = btn.textContent;
+      btn.textContent = 'Ajouté !';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }, 1200);
     });
   });
 
@@ -781,17 +826,22 @@ document.addEventListener("DOMContentLoaded", () => {
     let total = 0;
     cart.forEach((it, index) => {
       const line = document.createElement('div');
-      line.className = 'py-4 flex items-center justify-between gap-4';
+      line.className = 'py-4 flex items-start justify-between gap-4';
       const lineTotal = (it.price || 0) * (it.qty || 1);
       total += lineTotal;
+
+      // Build variant display
+      const variantHtml = it.variant ? `<div class="text-sm text-gray-600 mt-1 whitespace-pre-wrap break-words">${it.variant}</div>` : '';
+
       line.innerHTML = `
-        <div class="min-w-0">
+        <div class="min-w-0 flex-1">
           <div class="font-medium text-gray-800 truncate">${it.name}</div>
-          <div class="text-sm text-gray-500">${formatPrice(it.price || 0)} · Qté: ${it.qty || 1}</div>
+          ${variantHtml}
+          <div class="text-sm text-gray-500 mt-1">${formatPrice(it.price || 0)} · Qté: ${it.qty || 1}</div>
         </div>
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-4 shrink-0">
           <div class="font-semibold text-gray-800">${formatPrice(lineTotal)}</div>
-          <button aria-label="Supprimer" data-index="${index}" class="remove-item text-gray-400 hover:text-red-500"><i class="fas fa-trash"></i></button>
+          <button aria-label="Supprimer" data-index="${index}" class="remove-item text-gray-400 hover:text-red-500 transition"><i class="fas fa-trash"></i></button>
         </div>`;
       itemsContainer.appendChild(line);
     });
