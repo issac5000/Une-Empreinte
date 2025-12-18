@@ -781,17 +781,22 @@ document.addEventListener("DOMContentLoaded", () => {
     let total = 0;
     cart.forEach((it, index) => {
       const line = document.createElement('div');
-      line.className = 'py-4 flex items-center justify-between gap-4';
+      line.className = 'py-4 flex items-start justify-between gap-4';
       const lineTotal = (it.price || 0) * (it.qty || 1);
       total += lineTotal;
+
+      // Build variant display
+      const variantHtml = it.variant ? `<div class="text-sm text-gray-600 mt-1 whitespace-pre-wrap break-words">${it.variant}</div>` : '';
+
       line.innerHTML = `
-        <div class="min-w-0">
+        <div class="min-w-0 flex-1">
           <div class="font-medium text-gray-800 truncate">${it.name}</div>
-          <div class="text-sm text-gray-500">${formatPrice(it.price || 0)} · Qté: ${it.qty || 1}</div>
+          ${variantHtml}
+          <div class="text-sm text-gray-500 mt-1">${formatPrice(it.price || 0)} · Qté: ${it.qty || 1}</div>
         </div>
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-4 shrink-0">
           <div class="font-semibold text-gray-800">${formatPrice(lineTotal)}</div>
-          <button aria-label="Supprimer" data-index="${index}" class="remove-item text-gray-400 hover:text-red-500"><i class="fas fa-trash"></i></button>
+          <button aria-label="Supprimer" data-index="${index}" class="remove-item text-gray-400 hover:text-red-500 transition"><i class="fas fa-trash"></i></button>
         </div>`;
       itemsContainer.appendChild(line);
     });
