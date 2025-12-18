@@ -140,6 +140,59 @@
     transform: scale(1.01);
 }
 
+/* Hero section avec overlay sophistiqué */
+#accueil {
+    overflow: hidden;
+}
+
+/* Overlay multicouche pour hero premium */
+#accueil::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        /* Vignette subtile sur les bords */
+        radial-gradient(ellipse at center,
+            transparent 0%,
+            transparent 40%,
+            rgba(0, 0, 0, 0.15) 100%
+        ),
+        /* Gradient chaud et sophistiqué */
+        linear-gradient(135deg,
+            rgba(232, 197, 197, 0.25) 0%,
+            transparent 30%,
+            transparent 70%,
+            rgba(212, 165, 154, 0.2) 100%
+        ),
+        /* Gradient du bas plus doux */
+        linear-gradient(to top,
+            rgba(0, 0, 0, 0.4) 0%,
+            rgba(0, 0, 0, 0.1) 30%,
+            transparent 60%
+        );
+    pointer-events: none;
+}
+
+/* Amélioration du texte hero avec ombre portée douce */
+#accueil h1 {
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.3),
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        0 1px 2px rgba(206, 176, 151, 0.4);
+}
+
+/* Boutons hero avec effet glassmorphism */
+.hero-cta {
+    backdrop-filter: blur(8px);
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-cta:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
   
 /* Make buttons and cards rounder */
 /* Target Tailwind utility usage and native buttons */
@@ -165,24 +218,70 @@ a[class*="px-"][class*="py-"][class*="rounded"],
     border-radius: 1.5rem !important;
 }
 
-/* Product cards enhancements */
+/* Product cards enhancements - Premium look */
 .product-card {
-    transition: transform 200ms ease, box-shadow 200ms ease;
-    border-radius: 1.25rem !important; /* extra roundness */
-    width: 100%; /* fill grid cell to reduce gaps */
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 300ms ease,
+                border-color 300ms ease;
+    border-radius: 1.25rem !important;
+    width: 100%;
     max-width: none;
     margin-left: 0;
     margin-right: 0;
+    position: relative;
+    overflow: hidden;
+    background:
+        /* Texture papier subtile */
+        repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0,0,0,0.01) 1px, rgba(0,0,0,0.01) 2px),
+        /* Gradient doux */
+        linear-gradient(135deg,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(251, 246, 241, 0.9) 100%
+        );
+    border: 1px solid rgba(206, 176, 151, 0.2);
 }
+
+/* Effet shine subtil au hover */
+.product-card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 70%
+    );
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    transition: transform 600ms ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.product-card:hover::before {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+}
+
 .product-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow:
+        0 20px 40px rgba(206, 176, 151, 0.25),
+        0 10px 20px rgba(0, 0, 0, 0.1);
+    border-color: rgba(207, 191, 124, 0.4);
 }
+
 .product-card img {
-    transition: transform 250ms ease;
+    transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1), filter 400ms ease;
+    position: relative;
+    z-index: 0;
 }
+
 .product-card:hover img {
-    transform: scale(1.03);
+    transform: scale(1.05);
+    filter: brightness(1.05) saturate(1.1);
 }
 /* no max-width on larger screens; keep compact look via padding/typo */
 
@@ -249,10 +348,15 @@ a[class*="px-"][class*="py-"][class*="rounded"],
     }
 }
 
-/* Header shadow enhancement */
+/* Header shadow enhancement - glassmorphism subtil */
 .header-shadow {
-    box-shadow: 0 4px 12px -8px rgba(0,0,0,0.10), 0 1px 0 rgba(0,0,0,0.03);
-    border-bottom: 1px solid rgba(223,198,176,0.35); /* subtle warm hairline */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px) saturate(180%);
+    box-shadow:
+        0 4px 20px rgba(206, 176, 151, 0.12),
+        0 2px 8px rgba(0, 0, 0, 0.05),
+        0 1px 0 rgba(223, 198, 176, 0.15);
+    border-bottom: 1px solid rgba(232, 197, 197, 0.25);
 }
 
 /* Align the hamburger toggle completely against the left edge */
@@ -428,6 +532,12 @@ img[src*="logoheider.png"] {
     /* Accent or pour le texte (mise à jour #cfbf7c) */
     --accent-gold-500: #cfbf7c;
     --accent-gold-600: #b9aa69; /* version légèrement plus profonde pour hover */
+
+    /* Nouvelles couleurs: rose poudré et terracotta */
+    --rose-poudre: #E8C5C5;
+    --rose-poudre-light: #F5E5E5;
+    --terracotta: #D4A59A;
+    --terracotta-light: #E8CAC3;
 }
 
 /* Backgrounds */
@@ -441,6 +551,24 @@ img[src*="logoheider.png"] {
 
 /* Sections with white background become soft off‑white */
 section.bg-white { background-color: #FEFEFE !important; }
+
+/* Body avec texture subtile et gradient sophistiqué */
+body {
+    background:
+        /* Texture de papier très subtile */
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.008) 2px, rgba(0,0,0,0.008) 4px),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.008) 2px, rgba(0,0,0,0.008) 4px),
+        /* Gradient doux diagonal */
+        linear-gradient(135deg,
+            #FEFDFB 0%,
+            var(--brand-50) 25%,
+            var(--rose-poudre-light) 50%,
+            var(--brand-50) 75%,
+            #FEFDFB 100%
+        );
+    background-attachment: fixed;
+    min-height: 100vh;
+}
 
 /* Text colors (accents or) */
 .text-pink-100 { color: var(--brand-100) !important; }
@@ -462,6 +590,62 @@ section.bg-white { background-color: #FEFEFE !important; }
 /* Focus utilities (approximation of Tailwind ring) */
 .focus\:border-pink-500:focus { border-color: var(--brand-500) !important; }
 .focus\:ring-pink-500:focus   { box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-500) 35%, transparent) !important; }
+
+/* Intégration des nouvelles couleurs - Rose poudré et Terracotta */
+
+/* Boutons avec gradient rose poudré/terracotta pour un look premium */
+.btn-premium {
+    background: linear-gradient(135deg, var(--rose-poudre) 0%, var(--terracotta) 100%);
+    color: white;
+    border: none;
+    box-shadow: 0 8px 20px rgba(212, 165, 154, 0.3);
+    transition: all 300ms ease;
+}
+
+.btn-premium:hover {
+    background: linear-gradient(135deg, var(--terracotta) 0%, var(--rose-poudre) 100%);
+    box-shadow: 0 12px 28px rgba(212, 165, 154, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Badge/Ribbon avec les nouvelles couleurs */
+.badge-nouveau {
+    background: linear-gradient(135deg, var(--rose-poudre) 0%, var(--terracotta-light) 100%);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(232, 197, 197, 0.3);
+}
+
+/* Cartes de témoignages enrichies avec rose poudré */
+.testimonial-modern {
+    border: 1px solid rgba(232, 197, 197, 0.3);
+}
+
+.testimonial-modern:hover {
+    border-color: rgba(212, 165, 154, 0.5);
+    box-shadow:
+        0 12px 30px rgba(232, 197, 197, 0.2),
+        0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Liens avec accent terracotta au hover */
+a:not([class*="bg-"]):not(.nav-link):hover {
+    color: var(--terracotta);
+    transition: color 200ms ease;
+}
+
+/* Formulaires - inputs focus avec bordure terracotta */
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--terracotta) !important;
+    box-shadow: 0 0 0 3px rgba(212, 165, 154, 0.15) !important;
+}
 
 /* Section heading size boost (exclude hero banner) */
 section:not(#accueil) h2.title-font {
@@ -664,50 +848,112 @@ input.custom-radio:checked + .model-card {
     border-color: #f472b6; /* pink-400 */
 }
     
-/* Soft floral background scattered with low opacity (overlay) */
+/* Motifs décoratifs sophistiqués - fleurs et feuilles élégantes */
 body::after {
     content: "";
     position: fixed;
     inset: 0;
-    z-index: 20; /* above sections, below header (z-50) */
+    z-index: 0; /* derrière tout le contenu */
     pointer-events: none;
-    opacity: 0.22; /* make it visible but still soft */
+    opacity: 0.15;
     background-image:
+      /* Fleur élégante en haut à gauche */
       url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>\
-  <g fill='%23EBD6C4' fill-opacity='0.18'>\
-    <circle cx='50' cy='20' r='16'/>\
-    <circle cx='80' cy='50' r='16'/>\
-    <circle cx='50' cy='80' r='16'/>\
-    <circle cx='20' cy='50' r='16'/>\
-    <circle cx='50' cy='50' r='12' fill-opacity='0.22'/>\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'>\
+  <g fill='%23E8C5C5' fill-opacity='0.4'>\
+    <ellipse cx='100' cy='70' rx='20' ry='35' />\
+    <ellipse cx='130' cy='100' rx='35' ry='20' />\
+    <ellipse cx='100' cy='130' rx='20' ry='35' />\
+    <ellipse cx='70' cy='100' rx='35' ry='20' />\
+    <circle cx='100' cy='100' r='15' fill='%23cfbf7c' fill-opacity='0.5'/>\
   </g>\
 </svg>"),
+      /* Feuille en bas à droite */
       url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'>\
-  <g fill='%23F1E2D5' fill-opacity='0.16'>\
-    <ellipse cx='60' cy='18' rx='14' ry='18'/>\
-    <ellipse cx='102' cy='60' rx='14' ry='18' transform='rotate(45 102 60)'/>\
-    <ellipse cx='60' cy='102' rx='14' ry='18'/>\
-    <ellipse cx='18' cy='60' rx='14' ry='18' transform='rotate(-45 18 60)'/>\
-    <circle cx='60' cy='60' r='10' fill-opacity='0.22'/>\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 150'>\
+  <g fill='%23D4A59A' fill-opacity='0.35'>\
+    <path d='M75 20 Q100 50, 95 80 Q90 100, 75 130 Q60 100, 55 80 Q50 50, 75 20 Z' />\
+    <path d='M75 40 Q85 60, 75 90' stroke='%23EBD6C4' stroke-width='2' fill='none' opacity='0.4'/>\
   </g>\
 </svg>"),
+      /* Mandala subtil au centre */
       url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>\
-  <g fill='%23DFC6B0' fill-opacity='0.14'>\
-    <path d='M50 15c8 10 14 12 25 10-2 11 0 17 10 25-10 8-12 14-10 25-11-2-17 0-25 10-8-10-14-12-25-10 2-11 0-17-10-25 10-8 12-14 10-25 11 2 17 0 25-10z'/>\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'>\
+  <g fill='none' stroke='%23DFC6B0' stroke-width='1.5' opacity='0.3'>\
+    <circle cx='90' cy='90' r='50'/>\
+    <circle cx='90' cy='90' r='35'/>\
+    <circle cx='90' cy='90' r='20'/>\
+    <path d='M90 40 L90 50 M90 130 L90 140 M40 90 L50 90 M130 90 L140 90'/>\
+    <path d='M60 60 L68 68 M120 120 L112 112 M120 60 L112 68 M60 120 L68 112'/>\
   </g>\
 </svg>"),
+      /* Branche délicate en haut à droite */
       url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 110'>\
-  <g fill='%23CEB097' fill-opacity='0.14'>\
-    <circle cx='55' cy='55' r='18'/>\
-    <circle cx='85' cy='30' r='10'/>\
-    <circle cx='25' cy='85' r='12'/>\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'>\
+  <g fill='%23F1E2D5' fill-opacity='0.4'>\
+    <ellipse cx='50' cy='80' rx='8' ry='12' transform='rotate(-30 50 80)'/>\
+    <ellipse cx='70' cy='65' rx='7' ry='11' transform='rotate(-25 70 65)'/>\
+    <ellipse cx='90' cy='55' rx='8' ry='12' transform='rotate(-20 90 55)'/>\
+    <ellipse cx='110' cy='50' rx='7' ry='10' transform='rotate(-15 110 50)'/>\
+    <path d='M45 85 Q60 75, 75 68 Q90 60, 115 52' stroke='%23CEB097' stroke-width='2' fill='none' opacity='0.3'/>\
   </g>\
 </svg>");
-    background-repeat: no-repeat, no-repeat, no-repeat;
-    background-size: 300px 300px, 220px 220px, 340px 340px, 260px 260px;
-    background-position: left -30px 16%, right -20px 48%, left 58% bottom -12px, center 30%;
+    background-repeat: no-repeat;
+    background-size: 400px 400px, 320px 320px, 280px 280px, 350px 350px;
+    background-position:
+        left -50px top 8%,
+        right -40px bottom 12%,
+        center 45%,
+        right 5% top 6%;
+    mix-blend-mode: multiply;
+}
+
+/* Contenu au-dessus des motifs */
+body > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Sections alternées avec profondeur et ombres subtiles */
+section {
+    position: relative;
+}
+
+/* Section paire - fond blanc cassé avec ombre douce */
+section:nth-of-type(even):not(#accueil) {
+    background:
+        linear-gradient(180deg,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(254, 252, 250, 0.98) 100%
+        );
+    box-shadow:
+        0 -4px 20px rgba(206, 176, 151, 0.08),
+        0 4px 20px rgba(206, 176, 151, 0.08);
+}
+
+/* Section impaire - fond nude très léger */
+section:nth-of-type(odd):not(#accueil) {
+    background:
+        linear-gradient(180deg,
+            rgba(251, 246, 241, 0.6) 0%,
+            rgba(247, 238, 230, 0.4) 100%
+        );
+}
+
+/* Ajouter un séparateur décoratif subtil entre sections */
+section:not(#accueil):not(:last-of-type)::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    max-width: 400px;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        var(--accent-gold-500) 50%,
+        transparent 100%
+    );
+    opacity: 0.2;
 }
