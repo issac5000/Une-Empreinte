@@ -91,6 +91,95 @@
     text-wrap: balance;
 }
 
+/* ========== Premium Hero Title ========== */
+.hero-title-premium {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(2.4rem, 4vw + 1rem, 4.5rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1em;
+}
+
+.hero-title-line {
+    color: #fff;
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        0 4px 12px rgba(0, 0, 0, 0.2),
+        0 0 40px rgba(255, 255, 255, 0.1);
+}
+
+.hero-title-accent {
+    position: relative;
+    background: linear-gradient(
+        135deg,
+        #fff 0%,
+        #f5e6c8 25%,
+        #cfbf7c 50%,
+        #f5e6c8 75%,
+        #fff 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: hero-shimmer 4s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    font-style: italic;
+}
+
+.hero-title-accent::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -4px;
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(207, 191, 124, 0.6),
+        rgba(255, 255, 255, 0.8),
+        rgba(207, 191, 124, 0.6),
+        transparent
+    );
+    border-radius: 2px;
+}
+
+@keyframes hero-shimmer {
+    0%, 100% {
+        background-position: 0% center;
+    }
+    50% {
+        background-position: 200% center;
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+    .hero-title-premium {
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+        gap: 0.05em;
+    }
+
+    .hero-title-accent::after {
+        width: 80%;
+        height: 1.5px;
+        bottom: -2px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-title-accent {
+        animation: none;
+        background-position: 50% center;
+    }
+}
+
 .hero-primary-btn {
     background-color: rgba(212, 175, 55, 0.72);
     border: 1px solid rgba(212, 175, 55, 0.85);
@@ -105,33 +194,163 @@
     color: #ffffff !important;
 }
 
-@media (max-width: 640px) {
-  .hero-cta {
-    transition: transform 200ms ease, box-shadow 200ms ease;
-    will-change: transform, box-shadow;
-  }
-
-  .hero-cta:hover {
-    transform: scale(1.02);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
-  }
-
-  .hero-cta:active {
-    transform: scale(0.98);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-  }
+/* ========== Premium Hero CTA Buttons ========== */
+.hero-cta-premium {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    text-decoration: none;
+    border-radius: 50px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    min-width: 220px;
+    text-align: center;
 }
 
-@media (max-width: 640px) and (prefers-reduced-motion: reduce) {
-  .hero-cta {
-    transition: none !important;
-  }
+.hero-cta-text {
+    position: relative;
+    z-index: 2;
+}
 
-  .hero-cta:hover,
-  .hero-cta:active {
-    transform: none !important;
-    box-shadow: none !important;
-  }
+.hero-cta-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.hero-cta-premium:hover .hero-cta-shine {
+    left: 100%;
+}
+
+/* Primary CTA - Elegant gold gradient */
+.hero-cta-primary {
+    background: linear-gradient(135deg,
+        rgba(207, 191, 124, 0.95) 0%,
+        rgba(185, 170, 105, 0.95) 50%,
+        rgba(206, 176, 151, 0.9) 100%);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+        0 4px 15px rgba(207, 191, 124, 0.4),
+        0 8px 30px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.hero-cta-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50px;
+    padding: 2px;
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0.1),
+        rgba(207, 191, 124, 0.3));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.hero-cta-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow:
+        0 8px 25px rgba(207, 191, 124, 0.5),
+        0 15px 40px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg,
+        rgba(217, 201, 134, 1) 0%,
+        rgba(195, 180, 115, 1) 50%,
+        rgba(216, 186, 161, 0.95) 100%);
+}
+
+.hero-cta-primary:active {
+    transform: translateY(-1px) scale(0.99);
+}
+
+/* Secondary CTA - Elegant glass effect */
+.hero-cta-secondary {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.12) 0%,
+        rgba(255, 255, 255, 0.05) 100%);
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.1),
+        0 8px 32px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.hero-cta-secondary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50px;
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.05) 100%);
+    pointer-events: none;
+}
+
+.hero-cta-secondary:hover {
+    transform: translateY(-3px) scale(1.02);
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.1) 100%);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.15),
+        0 15px 45px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.hero-cta-secondary:active {
+    transform: translateY(-1px) scale(0.99);
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 640px) {
+    .hero-cta-premium {
+        width: 100%;
+        padding: 14px 28px;
+        min-width: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-cta-premium,
+    .hero-cta-shine {
+        transition: none !important;
+    }
+    .hero-cta-premium:hover {
+        transform: none !important;
+    }
 }
 
 /* Hero background refinements */
