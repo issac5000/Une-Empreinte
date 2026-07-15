@@ -1,19 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const siteHeader = document.querySelector("header.header-shadow");
-  if (siteHeader) {
-    const updateHeader = () => siteHeader.classList.toggle("is-scrolled", window.scrollY > 12);
-    updateHeader();
-    window.addEventListener("scroll", updateHeader, { passive: true });
-
-    const currentPage = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
-    siteHeader.querySelectorAll(":scope > .container > nav > a").forEach((link) => {
-      const href = (link.getAttribute("href") || "").split("#")[0].toLowerCase();
-      if ((currentPage === "index.html" && (href === "" || href === "index.html")) || href === currentPage) {
-        link.setAttribute("aria-current", "page");
-      }
-    });
-  }
-
   const mobileMenu = document.getElementById("mobile-menu");
   const primaryToggle = document.getElementById("mobile-menu-button");
   const extraToggles = Array.from(document.querySelectorAll("[data-mobile-menu-button]"))
@@ -54,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const applyClosedStyles = () => {
     try {
-      mobileMenu.style.transform = "translateX(-100%)";
+      mobileMenu.style.transform = "translateX(100%)";
       mobileMenu.style.visibility = "hidden";
       mobileMenu.style.opacity = "0";
       mobileMenu.style.pointerEvents = "none";
@@ -398,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
-
+});
   // Testimonials dots syncing
   const track = document.getElementById('avis-track');
   const dotsWrap = document.getElementById('avis-dots');
