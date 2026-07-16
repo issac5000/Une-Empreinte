@@ -1,0 +1,23 @@
+name: Upgrade premium intro
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/upgrade-premium-intro.yml
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade-intro:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Replace only the intro block
+        env:
+          INTRO_B64: Ly8gLS0tLSBQcmVtaXVt
