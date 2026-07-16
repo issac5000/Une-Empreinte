@@ -1,3 +1,168 @@
+// ---- Intro animation (homepage) ----
+(() => {
+  const path = window.location.pathname.toLowerCase();
+  const isHomepage = path === '/' || path === '' || path.endsWith('/index.html');
+  if (!isHomepage) return;
+
+  const previousOverflow = document.documentElement.style.overflow;
+  document.documentElement.style.overflow = 'hidden';
+
+  const style = document.createElement('style');
+  style.setAttribute('data-ue-intro-style', '');
+  style.textContent = `
+    #ue-intro {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 43%, rgba(235, 214, 196, .46), transparent 34%),
+        linear-gradient(145deg, #fffdfb 0%, #fff8f3 52%, #f8eee8 100%);
+      opacity: 1;
+      visibility: visible;
+      transition: opacity .52s cubic-bezier(.22, 1, .36, 1), visibility .52s ease;
+    }
+
+    #ue-intro::before,
+    #ue-intro::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(185, 170, 105, .16);
+      animation: ueIntroHalo 1.5s ease-out both;
+    }
+
+    #ue-intro::before { width: min(72vw, 540px); aspect-ratio: 1; }
+    #ue-intro::after { width: min(52vw, 390px); aspect-ratio: 1; animation-delay: .08s; }
+
+    .ue-intro__content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .ue-intro__mark {
+      width: clamp(76px, 18vw, 104px);
+      height: clamp(76px, 18vw, 104px);
+      object-fit: contain;
+      filter: drop-shadow(0 16px 24px rgba(91, 70, 55, .12));
+      opacity: 0;
+      transform: translateY(10px) scale(.9) rotate(-3deg);
+      animation: ueIntroMark .72s cubic-bezier(.22, 1, .36, 1) .08s forwards;
+    }
+
+    .ue-intro__title {
+      margin-top: 15px;
+      color: #3f3631;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.65rem, 6vw, 2.35rem);
+      font-weight: 700;
+      letter-spacing: -.035em;
+      opacity: 0;
+      transform: translateY(8px);
+      animation: ueIntroText .58s ease-out .28s forwards;
+    }
+
+    .ue-intro__title span { color: #b9aa69; }
+
+    .ue-intro__line {
+      width: 66px;
+      height: 1px;
+      margin-top: 14px;
+      background: linear-gradient(90deg, transparent, #b9aa69, transparent);
+      transform: scaleX(0);
+      transform-origin: center;
+      animation: ueIntroLine .58s ease-out .44s forwards;
+    }
+
+    #ue-intro.ue-intro--leaving {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    #ue-intro.ue-intro--leaving .ue-intro__content {
+      transform: translateY(-4px) scale(1.015);
+      transition: transform .52s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    @keyframes ueIntroMark {
+      to { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
+    }
+
+    @keyframes ueIntroText {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes ueIntroLine {
+      to { transform: scaleX(1); }
+    }
+
+    @keyframes ueIntroHalo {
+      from { opacity: 0; transform: scale(.82); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #ue-intro,
+      #ue-intro::before,
+      #ue-intro::after,
+      .ue-intro__mark,
+      .ue-intro__title,
+      .ue-intro__line,
+      #ue-intro.ue-intro--leaving .ue-intro__content {
+        animation: none !important;
+        transition-duration: .18s !important;
+      }
+      .ue-intro__mark,
+      .ue-intro__title { opacity: 1; transform: none; }
+      .ue-intro__line { transform: scaleX(1); }
+    }
+  `;
+  document.head.appendChild(style);
+
+  const intro = document.createElement('div');
+  intro.id = 'ue-intro';
+  intro.setAttribute('aria-hidden', 'true');
+  intro.innerHTML = `
+    <div class="ue-intro__content">
+      <img class="ue-intro__mark" src="image/logoheider.png" alt="">
+      <div class="ue-intro__title">Une <span>Empreinte</span></div>
+      <div class="ue-intro__line"></div>
+    </div>`;
+  document.body.prepend(intro);
+
+  const startedAt = performance.now();
+  let dismissed = false;
+
+  const dismissIntro = () => {
+    if (dismissed) return;
+    const remaining = Math.max(0, 1050 - (performance.now() - startedAt));
+    dismissed = true;
+    window.setTimeout(() => {
+      intro.classList.add('ue-intro--leaving');
+      window.setTimeout(() => {
+        intro.remove();
+        style.remove();
+        document.documentElement.style.overflow = previousOverflow;
+      }, 560);
+    }, remaining);
+  };
+
+  if (document.readyState === 'complete') {
+    dismissIntro();
+  } else {
+    window.addEventListener('load', dismissIntro, { once: true });
+    window.setTimeout(dismissIntro, 1500);
+  }
+})();
+
 document.addEventListener("DOMContentLoaded", () => {
   const mobileMenu = document.getElementById("mobile-menu");
   const primaryToggle = document.getElementById("mobile-menu-button");
@@ -383,7 +548,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
-});
   // Testimonials dots syncing
   const track = document.getElementById('avis-track');
   const dotsWrap = document.getElementById('avis-dots');
