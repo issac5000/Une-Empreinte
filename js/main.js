@@ -384,6 +384,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
   // Testimonials dots syncing
   const track = document.getElementById('avis-track');
   const dotsWrap = document.getElementById('avis-dots');
